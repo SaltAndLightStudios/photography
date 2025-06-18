@@ -155,13 +155,14 @@ filterButtons.forEach(button => {
         const category = this.getAttribute('data-category');
         filterGallery(category);
 
-        // Close other open sub-menus
-        document.querySelectorAll('.filter-dropdown.open').forEach(dd => dd.classList.remove('open'));
-
-        // ─── MOBILE: toggle the sub-category dropdown ───
+        // Mobile dropdown: collapse if open, open if closed
         const parent   = this.closest('.filter-container');
         const dropdown = parent.querySelector('.filter-dropdown');
-        if (dropdown) dropdown.classList.toggle('open');
+        const wasOpen  = dropdown && dropdown.classList.contains('open');
+        document.querySelectorAll('.filter-dropdown.open').forEach(dd => dd.classList.remove('open'));
+        if (dropdown && !wasOpen) {
+            dropdown.classList.add('open');
+        }
 
         // Highlight this main category button
         filterButtons.forEach(btn => {
