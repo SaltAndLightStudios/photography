@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salt and Light Studios Photography</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="bg-stone-50 text-stone-800">
+    <!-- Nav toggle button for small screens -->
+    <button id="nav-toggle" class="md:hidden fixed top-4 left-4 z-50 p-2 bg-white rounded shadow">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+    </button>
+    <div class="flex flex-col md:flex-row min-h-screen">
+        <!-- Sidebar Navigation - Now Sticky -->
+        <div
+            class="sidebar bg-stone-900 text-white md:w-64 w-full md:fixed md:h-screen p-6 flex flex-col justify-between md:block hidden">
+            <div>
+                <!-- Logo -->
+                <div class="logo-section">
+                    <div class="flex items-center">
+                        <svg class="w-10 h-10 text-stone-800" viewBox="0 0 36 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <!-- Inner circle (centered) -->
+                            <circle cx="18" cy="12" r="10" stroke="white" stroke-width="2" />
+                            <!-- Outer rounded rectangle -->
+                            <rect x="1" y="1" width="34" height="22" rx="6" stroke="white" stroke-width="2" />
+                            <!-- Small detail dot (optional, similar to original) -->
+                            <circle cx="28" cy="6" r="1" fill="white" />
+                        </svg>
+                        <div class="ml-3">
+                            <h1 class="text-xl font-bold text-stone-300">Salt & Light</h1>
+                            <p class="text-xs text-stone-200">Studios Photography</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Navigation Links -->
+                <nav class="flex flex-col md:items-start items-center space-y-6 mb-8">
+                    <a href="#home" class="nav-link active text-lg font-light tracking-wide">Home</a>
+                    <a href="#portfolio" class="nav-link text-lg font-light tracking-wide">Portfolio</a>
+                    <a href="#about" class="nav-link text-lg font-light tracking-wide">About</a>
+                    <a href="#blog" class="nav-link text-lg font-light tracking-wide">Blog</a>
+                    <!--<a href="#contact" class="nav-link text-lg font-light tracking-wide">Contact</a>-->
+                </nav>
+            </div>
+
+            <!-- Brand Name -->
+            <div class="text-center md:text-left">
+                <h2 class="text-xl font-medium mb-1">Salt and Light</h2>
+                <p class="text-sm text-stone-300">Studios Photography</p>
+                <a href="https://www.instagram.com/saltnlight_studios/"
+                    class="w-10 h-10 rounded-full bg-stone-900 text-white flex items-center justify-center hover:bg-stone-700 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                        fill="currentColor">
+                        <path
+                            d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+
+        <!-- Main Content - Adjusted for sticky sidebar -->
+        <div class="main-content flex-1 md:ml-64 overflow-y-auto scroll-container">
+            <!-- Hero Section -->
+            <section id="home" class="relative h-screen">
+                <div class="absolute inset-0 bg-black">
+                    <div class="absolute inset-0 bg-gradient-to-b from-black/30 to-black/10 z-10"></div>
+                    <img src="./Images/Gulf-Coast/old_lighthouse2.JPG" alt="Hero background"
+                        class="h-full w-full object-cover" />
+                </div>
+                <div class="relative z-20 h-full flex flex-col justify-center items-center text-white px-6">
+                    <h1 class="text-4xl md:text-6xl font-bold mb-4 text-center">Salt and Light Studios</h1>
+                    <p class="text-xl md:text-2xl font-light mb-8 text-center max-w-2xl">Capturing God's creation
+                        through the lens of faith</p>
+                    <div class="max-w-2xl text-center italic text-lg">
+                        "You are the salt of the earth... You are the light of the world... let your light shine before
+                        others, that they may see your good deeds and glorify your Father in heaven."
+                        <div class="mt-2 text-base font-light">Matthew 5:13-16</div>
+                    </div>
+                    <a href="#portfolio"
+                        class="mt-12 px-8 py-3 bg-white text-stone-900 hover:bg-stone-200 transition-colors rounded-sm">View
+                        Portfolio</a>
+                </div>
+            </section>
+
+            <!-- Portfolio Section -->
+            <section id="portfolio" class="py-20 px-6 md:px-12">
+                <div class="max-w-7xl mx-auto">
+                    <h2 class="text-3xl md:text-4xl font-semibold mb-2">Portfolio</h2>
+                    <p class="text-stone-600 mb-12">A glimpse of our work capturing God's beautiful creation</p>
+
+                    <!-- Portfolio Categories -->
+                    <div class="flex flex-wrap gap-4 mb-10">
+                        <button class="portfolio-filter px-6 py-2 bg-stone-900 text-white rounded-sm"
+                            data-category="all">All</button>
+                        <button
+                            class="portfolio-filter px-6 py-2 bg-stone-100 text-stone-800 hover:bg-stone-200 transition-colors rounded-sm"
+                            data-category="gulf-coast">Gulf Coast</button>
+                        <button
+                            class="portfolio-filter px-6 py-2 bg-stone-100 text-stone-800 hover:bg-stone-200 transition-colors rounded-sm"
+                            data-category="travel">Travel</button>
+                        <button
+                            class="portfolio-filter px-6 py-2 bg-stone-100 text-stone-800 hover:bg-stone-200 transition-colors rounded-sm"
+                            data-category="events">Events</button>
+                        <button
+                            class="portfolio-filter px-6 py-2 bg-stone-100 text-stone-800 hover:bg-stone-200 transition-colors rounded-sm"
+                            data-category="freestyle">Freestyle</button>
+                        <button
+                            class="portfolio-filter px-6 py-2 bg-stone-100 text-stone-800 hover:bg-stone-200 transition-colors rounded-sm"
+                            data-category="lifestyle">Lifestyle</button>
+                        <button
+                            class="portfolio-filter px-6 py-2 bg-stone-100 text-stone-800 hover:bg-stone-200 transition-colors rounded-sm"
+                            data-category="portraits">Portraits</button>
+                        <button
+                            class="portfolio-filter px-6 py-2 bg-stone-100 text-stone-800 hover:bg-stone-200 transition-colors rounded-sm"
+                            data-category="film">Film</button>
+                    </div>
+
+                    <!-- Gallery Grid - Now using a dynamic layout -->
+                    <div class="gallery-grid" id="gallery-grid">
+                        <!-- Gulf Coast Images -->
+                        <div class="gallery-item" data-category="gulf-coast">
+                            <img src="./Images/Gulf-Coast/frontbeach_sunset.JPG" alt="Ocean Springs Sunset"
+                                class="w-full h-80 object-cover">
+                        </div>
+
+                        <div class="gallery-item" data-category="gulf-coast">
+                            <img src="./Images/Gulf-Coast/birdandfish.JPG" alt="Osprey Catch"
+                                class="w-full h-80 object-cover">
+                        </div>
+
+                        <div class="gallery-item" data-category="gulf-coast">
+                            <img src="./Images/Gulf-Coast/old_lighthouse.JPG" alt="Biloxi Little Lighthouse"
+                                class="w-full h-80 object-cover">
+                        </div>
+
+                        <div class="gallery-item" data-category="gulf-coast">
+                            <img src="./Images/Gulf-Coast/closeup_biloxi_lighthouse.jpg" alt="Biloxi Lighthouse"
+                                class="w-full h-80 object-cover">
+                        </div>
+
+                        <div class="gallery-item" data-category="gulf-coast">
+                            <img src="./Images/Gulf-Coast/square_lighthouse.JPG" alt="The Loop Lighthouse"
+                                class="w-full h-80 object-cover">
+                        </div>
+
+                        <div class="gallery-item" data-category="gulf-coast">
+                            <img src="./Images/Gulf-Coast/jones_park_port.jpg" alt="Gulfport Harbor"
+                                class="w-full h-80 object-cover">
+                        </div>
+
+                        <!-- Travel Images -->
+                        <div class="gallery-item" data-category="travel">
+                            <img src="./Images/Travel/bigben_framed_London.JPG" alt="Big Ben"
+                                class="w-full h-80 object-cover">
+                        </div>
+
+                        <div class="gallery-item" data-category="travel">
+                            <img src="./Images/Travel/Millenium_bridge_london.JPG" alt="Millenium Bridge"
+                                class="w-full h-80 object-cover">
+                        </div>
+
+                        <div class="gallery-item" data-category="travel">
+                            <img src="./Images/Travel/Primrose_Hill_London.JPG" alt="Primrose Hill"
+                                class="w-full h-80 object-cover">
+                        </div>
+
+                        <div class="gallery-item" data-category="travel">
+                            <img src="./Images/Travel/Tower_Bridge.JPG" alt="Tower Bridge"
+                                class="w-full h-80 object-cover">
+                        </div>
+
+                        <div class="gallery-item" data-category="travel">
+                            <img src="./Images/Travel/Tower_Bridge_Full.JPG" alt="Tower Bridge"
+                                class="w-full h-80 object-cover">
+                        </div>
+
+                        <div class="gallery-item" data-category="travel">
+                            <img src="./Images/Travel/st_pauls_London.JPG" alt="St Paul's Cathedral"
+                                class="w-full h-80 object-cover">
+                        </div>
+
+                        <div class="gallery-item" data-category="travel">
+                            <img src="./Images/Travel/london_architecture.JPG" alt="London Architecture"
+                                class="w-full h-80 object-cover">
+                        </div>
+
+                        <div class="gallery-item" data-category="travel">
+                            <img src="./Images/Travel/lumen_London.JPG" alt="Let Light Shine Out of Darkness"
+                                class="w-full h-80 object-cover">
+                        </div>
+
+                        <div class="gallery-item" data-category="travel">
+                            <img src="./Images/Travel/the_tube_london.JPG" alt="Mind The Gap"
+                                class="w-full h-80 object-cover">
+                        </div>
+
+                        <div class="gallery-item" data-category="travel">
+                            <img src="./Images/Travel/way_out_tube_london.JPG" alt="The Way Out"
+                                class="w-full h-80 object-cover">
+                        </div>
+
+                        <div class="gallery-item" data-category="travel">
+                            <img src="./Images/Travel/london_stone_path.JPG" alt="Proverbs 4:26"
+                                class="w-full h-80 object-cover">
+                        </div>
+
+                        <div class="gallery-item" data-category="travel">
+                            <img src="./Images/Travel/public_isolation_london.JPG" alt="Public Isolation"
+                                class="w-full h-80 object-cover">
+                        </div>
+
+                        <div class="gallery-item" data-category="travel">
+                            <img src="./Images/Travel/london_painter.JPEG" alt="London Artist"
+                                class="w-full h-80 object-cover">
+                        </div>
+
+                        <div class="gallery-item" data-category="travel">
+                            <img src="./Images/Travel/london_crosswalk.JPG" alt="London Streets"
+                                class="w-full h-80 object-cover">
+                        </div>
+
+                        <div class="gallery-item" data-category="travel">
+                            <img src="./Images/Travel/old_man_london.JPG" alt="People of London"
+                                class="w-full h-80 object-cover">
+                        </div>
+
+
+                        <!-- Event Images -->
+                        <div class="gallery-item" data-category="events">
+                            <img src="./Images/Events/praise2.jpg" alt="Praise" class="w-full h-80 object-cover">
+                        </div>
+
+                        <div class="gallery-item" data-category="events">
+                            <img src="./Images/Events/praise1.jpg" alt="Praise" class="w-full h-80 object-cover">
+                        </div>
+
+                        <div class="gallery-item" data-category="events">
+                            <img src="./Images/Events/Easter1.JPEG" alt="Easter" class="w-full h-80 object-cover">
+                        </div>
+
+                        <div class="gallery-item" data-category="events">
+                            <img src="./Images/Events/candlelightservice.jpg" alt="Candlelight Service"
+                                class="w-full h-80 object-cover">
+                        </div>
+
+                        <div class="gallery-item" data-category="events">
+                            <img src="./Images/Events/scc_preach.JPG" alt="Singing Christmas Tree Biloxi"
+                                class="w-full h-80 object-cover">
+                        </div>
+
+                        <div class="gallery-item" data-category="events">
+                            <img src="./Images/Events/scc_violin.jpg" alt="Singing Christmas Tree Biloxi"
+                                class="w-full h-80 object-cover">
+                        </div>
+
+                        <!-- Freestyle Images -->
+                        <div class="gallery-item" data-category="freestyle">
+                            <img src="./Images/Freestyle/finch_coffee.JPG" alt="A Splash of Finch Coffee"
+                                class="w-full h-80 object-cover">
+                        </div>
+
+
+                        <!-- Lifestyle Images -->
+                        <div class="gallery-item" data-category="lifestyle">
+                            <img src="./Images/Lifestyle/kids_on_beach.jpg" alt="Wedding couple"
+                                class="w-full h-80 object-cover">
+                        </div>
+
+
+                        <!-- Portrait Images -->
+                        <div class="gallery-item" data-category="portraits">
+                            <img src="./Images/Portraits/cody.jpg" alt="" class="w-full h-80 object-cover">
+                        </div>
+
+                        <!-- Film Images -->
+                        <div class="gallery-item" data-category="film">
+                            <img src="./Images/Film/starcase_film.JPG" alt="Spiral Staircase"
+                                class="w-full h-80 object-cover">
+                        </div>
+
+                        <div class="gallery-item" data-category="film">
+                            <img src="./Images/Film/bookcase_film.jpg" alt="Bookshelf" class="w-full h-80 object-cover">
+                        </div>
+
+                        <div class="gallery-item" data-category="film">
+                            <img src="./Images/Film/catisland_coffee_film.JPG" alt="Cat Island Coffeehouse"
+                                class="w-full h-80 object-cover">
+                        </div>
+
+                        <div class="gallery-item" data-category="film">
+                            <img src="./Images/Film/cs_portrait.JPG" alt="Black and White Portrait"
+                                class="w-full h-80 object-cover">
+                        </div>
+
+                        <div class="gallery-item" data-category="film">
+                            <img src="./Images/Film/lighthouse_film.JPG" alt="Biloxi Lighthouse"
+                                class="w-full h-80 object-cover">
+                        </div>
+
+                        <div class="gallery-item" data-category="film">
+                            <img src="./Images/Film/architecture_film.jpg" alt="Downtown Biloxi Architecture"
+                                class="w-full h-80 object-cover">
+                        </div>
+
+                        <div class="gallery-item" data-category="film">
+                            <img src="./Images/Film/wallart_film.jpg" alt="Downtown Biloxi Wall Art"
+                                class="w-full h-80 object-cover">
+                        </div>
+                    </div>
+
+                    <!-- Load More Button -->
+                    <div class="flex justify-center mt-12">
+                        <button id="load-more"
+                            class="px-8 py-3 border border-stone-900 text-stone-900 hover:bg-stone-900 hover:text-white transition-colors">Load
+                            More</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- About Section -->
+            <section id="about" class="py-20 px-6 md:px-12 bg-stone-100">
+                <div class="max-w-7xl mx-auto">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                        <div>
+                            <h2 class="text-3xl md:text-4xl font-semibold mb-6">Our Story</h2>
+                            <p class="text-stone-700 mb-4">My husband and I founded Salt and Light Studios with a
+                                mission to share the beauty of God's creation through the art of photography. Inspired
+                                by Matthew 5:13-16, we strive to be both salt and light in the world of visual
+                                storytelling.</p>
+                            <p class="text-stone-700 mb-4">I bring years of experience and a unique perspective to every
+                                shoot. I believe that every moment has a story, and I am dedicated to telling that story
+                                through my lenses.</p>
+                            <p class="text-stone-700 mb-8">Whether it's the majesty of nature, the joy of travel, or the
+                                quiet moments of everyday life, I approach each project with reverence, creativity, and
+                                technical excellence.</p>
+                            <a href="#contact"
+                                class="px-8 py-3 bg-stone-900 text-white hover:bg-stone-800 transition-colors">Get in
+                                Touch</a>
+                        </div>
+                        <div class="relative">
+                            <div class="relative w-full h-full">
+                                <img src="./Images/Portraits/us.jpg" alt="Salt and Light Studios"
+                                    class="w-full h-full object-cover rounded-md">
+                                <div class="absolute inset-0 border-2 border-stone-900 rounded-md pointer-events-none">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Blog Section (Replacing Services) -->
+            <section class="py-20 px-6 md:px-12" id="blog">
+                <div class="max-w-7xl mx-auto">
+                    <h2 class="text-3xl md:text-4xl font-semibold mb-2">From the Lens</h2>
+                    <p class="text-stone-600 mb-12">Insights, adventures, and reflections from behind the camera</p>
+                    <!-- Blog Search and Filter -->
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-6">
+                        <!-- Search -->
+                        <div class="blog-search w-full md:w-auto">
+                            <div class="relative">
+                                <input
+                                    class="w-full md:w-80 px-4 py-2 border border-stone-300 rounded-sm focus:outline-none"
+                                    id="blog-search" placeholder="Search posts..." type="text" />
+                                <button class="absolute right-2 top-1/2 transform -translate-y-1/2 text-stone-500">
+                                    <svg class="h-5 w-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round"
+                                            stroke-linejoin="round" stroke-width="2"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <!-- Tags/Categories -->
+                        <div class="flex flex-wrap gap-2 w-full md:w-auto">
+                            <button
+                                class="blog-tag px-3 py-1 bg-stone-200 text-stone-700 rounded-full text-sm font-medium blog-tag-filter active"
+                                data-tag="all">All</button>
+                            <button
+                                class="blog-tag px-3 py-1 bg-stone-200 text-stone-700 rounded-full text-sm font-medium blog-tag-filter"
+                                data-tag="creative-process">Creative Process</button>
+                            <button
+                                class="blog-tag px-3 py-1 bg-stone-200 text-stone-700 rounded-full text-sm font-medium blog-tag-filter"
+                                data-tag="travel">Travel</button>
+                            <button
+                                class="blog-tag px-3 py-1 bg-stone-200 text-stone-700 rounded-full text-sm font-medium blog-tag-filter"
+                                data-tag="techniques">Techniques</button>
+                            <button
+                                class="blog-tag px-3 py-1 bg-stone-200 text-stone-700 rounded-full text-sm font-medium blog-tag-filter"
+                                data-tag="gear">Gear</button>
+                            <button
+                                class="blog-tag px-3 py-1 bg-stone-200 text-stone-700 rounded-full text-sm font-medium blog-tag-filter"
+                                data-tag="faith">Faith</button>
+                        </div>
+                    </div>
+                    <!-- Blog Posts Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="blog-posts-container">
+                        <!-- Blog Post 1 -->
+                        <div class="blog-card bg-white border border-stone-200 overflow-hidden blog-post"
+                            data-tags="creative-process,techniques">
+                            <img alt="Camera on tripod at sunset" class="w-full h-56 object-cover"
+                                src="https://images.unsplash.com/photo-1452421822248-d4c2b47f0c81?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=1974&amp;q=80" />
+                            <div class="p-6">
+                                <div class="flex items-center text-stone-500 text-sm mb-3">
+                                    <span>June 16, 2025</span>
+                                    <span class="mx-2">•</span>
+                                    <span>5 min read</span>
+                                </div>
+                                <h3 class="text-xl font-semibold mb-2">Building My Photography Website with a Little
+                                    Help from AI
+                                </h3>
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    <span class="px-2 py-1 bg-stone-100 text-stone-600 text-xs rounded-full">Creative
+                                        Process</span>
+                                    <span
+                                        class="px-2 py-1 bg-stone-100 text-stone-600 text-xs rounded-full">Techniques</span>
+                                </div>
+                                <a class="text-stone-900 font-medium hover:underline inline-flex items-center"
+                                    href="./Blogs/building-my-photography-website.html">
+                                    Read Blog
+                                    <svg class="h-4 w-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round"
+                                            stroke-linejoin="round" stroke-width="2"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- Blog Post 2 -->
+                        <div class="blog-card bg-white border border-stone-200 overflow-hidden blog-post"
+                            data-tags="creative-process,techniques">
+                            <img alt="Camera on tripod at sunset" class="w-full h-56 object-cover"
+                                src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=2070&amp;q=80" />
+                            <div class="p-6">
+                                <div class="flex items-center text-stone-500 text-sm mb-3">
+                                    <span>June 16, 2025</span>
+                                    <span class="mx-2">•</span>
+                                    <span>5 min read</span>
+                                </div>
+                                <h3 class="text-xl font-semibold mb-2">The Art of Patience: Waiting for the Perfect
+                                    Moment
+                                </h3>
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    <span class="px-2 py-1 bg-stone-100 text-stone-600 text-xs rounded-full">Creative
+                                        Process</span>
+                                    <span
+                                        class="px-2 py-1 bg-stone-100 text-stone-600 text-xs rounded-full">Techniques</span>
+                                </div>
+                                <a class="text-stone-900 font-medium hover:underline inline-flex items-center"
+                                    href="/Blogs/building-my-photography-website.html">
+                                    Read Blog
+                                    <svg class="h-4 w-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round"
+                                            stroke-linejoin="round" stroke-width="2"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- Blog Post 3 -->
+                        <div class="blog-card bg-white border border-stone-200 overflow-hidden blog-post"
+                            data-tags="creative-process,techniques">
+                            <img alt="Camera on tripod at sunset" class="w-full h-56 object-cover"
+                                src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=1964&amp;q=80" />
+                            <div class="p-6">
+                                <div class="flex items-center text-stone-500 text-sm mb-3">
+                                    <span>June 16, 2025</span>
+                                    <span class="mx-2">•</span>
+                                    <span>5 min read</span>
+                                </div>
+                                <h3 class="text-xl font-semibold mb-2">My Equipment
+                                </h3>
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    <span class="px-2 py-1 bg-stone-100 text-stone-600 text-xs rounded-full">Creative
+                                        Process</span>
+                                    <span
+                                        class="px-2 py-1 bg-stone-100 text-stone-600 text-xs rounded-full">Techniques</span>
+                                </div>
+                                <a class="text-stone-900 font-medium hover:underline inline-flex items-center"
+                                    href="/Blogs/building-my-photography-website.html">
+                                    Read Blog
+                                    <svg class="h-4 w-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round"
+                                            stroke-linejoin="round" stroke-width="2"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- Blog Post 4 -->
+                        <div class="blog-card bg-white border border-stone-200 overflow-hidden blog-post"
+                            data-tags="creative-process,faith">
+                            <img alt="Church interior" class="w-full h-56 object-cover"
+                                src="https://images.unsplash.com/photo-1551373884-8a0750074df7?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=2070&amp;q=80" />
+                            <div class="p-6">
+                                <div class="flex items-center text-stone-500 text-sm mb-3">
+                                    <span>March 28, 2023</span>
+                                    <span class="mx-2">•</span>
+                                    <span>7 min read</span>
+                                </div>
+                                <h3 class="text-xl font-semibold mb-2">Capturing Sacred Spaces: A Photographer's
+                                    Reflection</h3>
+                                <p class="text-stone-600 mb-4 line-clamp-3">Photographing churches and sacred spaces
+                                    presents unique challenges and opportunities. In this reflective piece, I
+                                    discuss my approach to honoring these spaces through thoughtful photography.</p>
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    <span class="px-2 py-1 bg-stone-100 text-stone-600 text-xs rounded-full">Creative
+                                        Process</span>
+                                    <span
+                                        class="px-2 py-1 bg-stone-100 text-stone-600 text-xs rounded-full">Faith</span>
+                                </div>
+                                <a class="text-stone-900 font-medium hover:underline inline-flex items-center" href="#">
+                                    Read Blog
+                                    <svg class="h-4 w-4 ml-1" fill="none" stroke="currentColor" viewbox="0 0 24 24"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round"
+                                            stroke-linejoin="round" stroke-width="2"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- Blog Post 5 -->
+                        <div class="blog-card bg-white border border-stone-200 overflow-hidden blog-post"
+                            data-tags="travel,techniques">
+                            <img alt="Mountain landscape" class="w-full h-56 object-cover"
+                                src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=2070&amp;q=80" />
+                            <div class="p-6">
+                                <div class="flex items-center text-stone-500 text-sm mb-3">
+                                    <span>February 15, 2023</span>
+                                    <span class="mx-2">•</span>
+                                    <span>9 min read</span>
+                                </div>
+                                <h3 class="text-xl font-semibold mb-2">The Art of Patience: Waiting for the Perfect
+                                    Moment</h3>
+                                <p class="text-stone-600 mb-4 line-clamp-3">Great landscape photography often
+                                    requires extraordinary patience. In this post, I share stories from my recent
+                                    trip to the Rockies and how waiting for the right conditions led to my best
+                                    work.</p>
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    <span
+                                        class="px-2 py-1 bg-stone-100 text-stone-600 text-xs rounded-full">Travel</span>
+                                    <span
+                                        class="px-2 py-1 bg-stone-100 text-stone-600 text-xs rounded-full">Techniques</span>
+                                </div>
+                                <a class="text-stone-900 font-medium hover:underline inline-flex items-center" href="#">
+                                    Read Blog
+                                    <svg class="h-4 w-4 ml-1" fill="none" stroke="currentColor" viewbox="0 0 24 24"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round"
+                                            stroke-linejoin="round" stroke-width="2"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- Blog Post 6 -->
+                        <div class="blog-card bg-white border border-stone-200 overflow-hidden blog-post"
+                            data-tags="gear,creative-process">
+                            <img alt="Camera lens closeup" class="w-full h-56 object-cover"
+                                src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=1964&amp;q=80" />
+                            <div class="p-6">
+                                <div class="flex items-center text-stone-500 text-sm mb-3">
+                                    <span>January 5, 2023</span>
+                                    <span class="mx-2">•</span>
+                                    <span>4 min read</span>
+                                </div>
+                                <h3 class="text-xl font-semibold mb-2">Why I Switched to Prime Lenses: A Creative
+                                    Journey</h3>
+                                <p class="text-stone-600 mb-4 line-clamp-3">Making the switch from zoom lenses to
+                                    primes changed my photography in unexpected ways. In this post, I discuss how
+                                    limitations can actually enhance creativity and improve your work.</p>
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    <span class="px-2 py-1 bg-stone-100 text-stone-600 text-xs rounded-full">Gear</span>
+                                    <span class="px-2 py-1 bg-stone-100 text-stone-600 text-xs rounded-full">Creative
+                                        Process</span>
+                                </div>
+                                <a class="text-stone-900 font-medium hover:underline inline-flex items-center" href="#">
+                                    Read Blog
+                                    <svg class="h-4 w-4 ml-1" fill="none" stroke="currentColor" viewbox="0 0 24 24"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round"
+                                            stroke-linejoin="round" stroke-width="2"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- Blog Post 7 -->
+                        <div class="blog-card bg-white border border-stone-200 overflow-hidden blog-post"
+                            data-tags="gear,creative-process">
+                            <img alt="Camera lens closeup" class="w-full h-56 object-cover"
+                                src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=1964&amp;q=80" />
+                            <div class="p-6">
+                                <div class="flex items-center text-stone-500 text-sm mb-3">
+                                    <span>January 5, 2023</span>
+                                    <span class="mx-2">•</span>
+                                    <span>4 min read</span>
+                                </div>
+                                <h3 class="text-xl font-semibold mb-2">Why I Switched to Prime Lenses: A Creative
+                                    Journey</h3>
+                                <p class="text-stone-600 mb-4 line-clamp-3">Making the switch from zoom lenses to
+                                    primes changed my photography in unexpected ways. In this post, I discuss how
+                                    limitations can actually enhance creativity and improve your work.</p>
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    <span class="px-2 py-1 bg-stone-100 text-stone-600 text-xs rounded-full">Gear</span>
+                                    <span class="px-2 py-1 bg-stone-100 text-stone-600 text-xs rounded-full">Creative
+                                        Process</span>
+                                </div>
+                                <a class="text-stone-900 font-medium hover:underline inline-flex items-center" href="#">
+                                    Read Blog
+                                    <svg class="h-4 w-4 ml-1" fill="none" stroke="currentColor" viewbox="0 0 24 24"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round"
+                                            stroke-linejoin="round" stroke-width="2"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Blog Pagination -->
+                    <div class="flex justify-center mt-12">
+                        <div id="blog-pagination" class="flex space-x-2">
+                            <button
+                                class="blog-pagination-btn prev w-10 h-10 flex items-center justify-center rounded-sm border"
+                                disabled>
+                                ‹
+                            </button>
+                            <!-- you can leave these static if you like, or regenerate in JS (see below) -->
+                            <button
+                                class="blog-pagination-btn page w-10 h-10 flex items-center justify-center rounded-sm border active">
+                                1
+                            </button>
+                            <button
+                                class="blog-pagination-btn page w-10 h-10 flex items-center justify-center rounded-sm border">
+                                2
+                            </button>
+                            <button
+                                class="blog-pagination-btn page w-10 h-10 flex items-center justify-center rounded-sm border">
+                                3
+                            </button>
+                            <button
+                                class="blog-pagination-btn next w-10 h-10 flex items-center justify-center rounded-sm border">
+                                ›
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </section>
+    </div>
+    </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-6 md:px-12 bg-stone-100 text-stone-600">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <div class="flex items-center">
+                        <svg class="w-10 h-10 text-stone-800" viewBox="0 0 36 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <!-- Inner circle (centered) -->
+                            <circle cx="18" cy="12" r="8" stroke="black" stroke-width="2" />
+                            <!-- Outer rounded rectangle -->
+                            <rect x="1" y="1" width="30" height="22" rx="6" stroke="black" stroke-width="2" />
+                            <!-- Small detail dot (optional, similar to original) -->
+                            <circle cx="28" cy="6" r="1" fill="black" />
+                        </svg>
+                        <div>
+                            <p class="font-medium text-stone-900">Salt and Light Studios</p>
+                            <p class="text-sm">Photography</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center md:text-right">
+                    <p>&copy; 2025 Salt and Light Studios Photography. All rights reserved.</p>
+                    <p class="text-sm mt-1">Matthew 5:13-16</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox">
+        <div class="lightbox-content">
+            <span class="lightbox-close">&times;</span>
+            <img id="lightbox-img" class="lightbox-img" src="" alt="Enlarged portfolio image">
+            <div id="lightbox-caption" class="lightbox-caption"></div>
+            <div class="lightbox-nav lightbox-prev">&#10094;</div>
+            <div class="lightbox-nav lightbox-next">&#10095;</div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    <script src="blog.js"> </script>
+</body>
+
+</html>
