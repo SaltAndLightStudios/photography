@@ -721,3 +721,41 @@ footer {
     margin-left: 0;
   }
 }
+
+/* Mobile (≤640px): hide submenus, show on open or hover */
+@media (max-width: 768px) {
+  .filter-dropdown {
+    /* force‐hide by default */
+    display: none !important;
+    position: static;
+    width: 100%;
+    background: #fff;
+    margin-top: 0.25rem;
+  }
+  .filter-dropdown.open {
+    /* show when JS toggles the "open" class */
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateY(0) !important;
+  }
+  .filter-dropdown-item {
+    display: block;
+    padding: 0.5rem 1rem;
+  }
+  /* also show on container hover (or touch “hover”) */
+  .filter-container:hover .filter-dropdown {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateY(0) !important;
+  }
+}
+/* Ensure dropdowns show when .open or on hover, overriding any previous rules */
+.filter-dropdown.open,
+.filter-container:hover .filter-dropdown {
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translateY(0) !important;
+}

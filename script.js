@@ -107,8 +107,8 @@ function filterGallery(category) {
     });
 
     // Add active styling to clicked button
-    event.currentTarget.classList.remove('bg-stone-100', 'text-stone-800');
-    event.currentTarget.classList.add('bg-stone-900', 'text-white');
+    //event.currentTarget.classList.remove('bg-stone-100', 'text-stone-800');
+    //event.currentTarget.classList.add('bg-stone-900', 'text-white');
 
     // First, completely hide all items and reset their display property
     galleryItems.forEach(item => {
@@ -151,9 +151,34 @@ function filterGallery(category) {
 
 // Add click event to filter buttons
 filterButtons.forEach(button => {
-    button.addEventListener('click', function (event) {
+    button.addEventListener('click', function () {
         const category = this.getAttribute('data-category');
         filterGallery(category);
+
+        // ─── MOBILE: toggle the sub-category dropdown ───
+        const parent   = this.closest('.filter-container');
+        const dropdown = parent.querySelector('.filter-dropdown');
+        if (dropdown) dropdown.classList.toggle('open');
+
+        // Highlight this main category button
+        filterButtons.forEach(btn => {
+            btn.classList.remove('bg-stone-900','text-white');
+            btn.classList.add('bg-stone-100','text-stone-800');
+        });
+        this.classList.remove('bg-stone-100','text-stone-800');
+        this.classList.add('bg-stone-900','text-white');
+    });
+});
+
+// Mobile "hover": open/close sub-category dropdown on small screens
+filterButtons.forEach(button => {
+    const parent   = button.closest('.filter-container');
+    const dropdown = parent.querySelector('.filter-dropdown');
+    parent.addEventListener('mouseenter', () => {
+        if (window.innerWidth <= 640 && dropdown) dropdown.classList.add('open');
+    });
+    parent.addEventListener('mouseleave', () => {
+        if (window.innerWidth <= 640 && dropdown) dropdown.classList.remove('open');
     });
 });
 
@@ -177,7 +202,7 @@ document.querySelectorAll('.filter-dropdown-item').forEach(item => {
         currentSubcategory = subcat;
         visibleItems = 6;
         // Highlight parent category button
-        const parentBtn = parent.querySelector('.filter-button');
+        const parentBtn = parent.querySelector('.portfolio-filter');
         parentBtn.classList.remove('bg-stone-100', 'text-stone-800');
         parentBtn.classList.add('bg-stone-900', 'text-white');
         // Hide all items
