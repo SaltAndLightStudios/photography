@@ -230,6 +230,9 @@ document.querySelectorAll('.filter-dropdown-item').forEach(item => {
         });
         // Toggle “Load More”
         loadMoreBtn.style.display = (matching.length > visibleItems) ? 'block' : 'none';
+        // Collapse the sub-category dropdown
+        const dropdown = parent.querySelector('.filter-dropdown');
+        if (dropdown) dropdown.classList.remove('open');
     });
 });
 
