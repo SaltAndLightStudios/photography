@@ -173,17 +173,6 @@ filterButtons.forEach(button => {
     });
 });
 
-// Mobile "hover": open/close sub-category dropdown on small screens
-filterButtons.forEach(button => {
-    const parent   = button.closest('.filter-container');
-    const dropdown = parent.querySelector('.filter-dropdown');
-    parent.addEventListener('mouseenter', () => {
-        if (window.innerWidth <= 640 && dropdown) dropdown.classList.add('open');
-    });
-    parent.addEventListener('mouseleave', () => {
-        if (window.innerWidth <= 640 && dropdown) dropdown.classList.remove('open');
-    });
-});
 
 // Bind sub-category clicks globally so images load immediately
 document.querySelectorAll('.filter-dropdown-item').forEach(item => {

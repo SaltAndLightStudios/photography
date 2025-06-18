@@ -256,11 +256,6 @@ body.lightbox-open {
     margin-top: 0.5rem;
 }
 
-.filter-container:hover .filter-dropdown {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-}
 
 .filter-dropdown-item {
     padding: 0.5rem 1rem;
@@ -291,9 +286,6 @@ body.lightbox-open {
     transition: transform 0.3s ease;
 }
 
-.filter-container:hover .filter-button::after {
-    transform: rotate(180deg);
-}
 
 /* Mobile adjustments for filter dropdowns */
 @media (max-width: 768px) {
@@ -304,12 +296,6 @@ body.lightbox-open {
         width: 100%;
     }
 
-    .filter-container.active .filter-dropdown {
-        display: block;
-        opacity: 1;
-        visibility: visible;
-        transform: none;
-    }
 
     .filter-container {
         display: block;
@@ -744,18 +730,24 @@ footer {
     padding: 0.5rem 1rem;
   }
 
-    /* Prevent hover from keeping dropdown open on mobile */
-  .filter-container:hover .filter-dropdown {
+}
+/* Ensure mobile sidebar toggles correctly */
+@media (max-width: 768px) {
+  .sidebar {
+    display: flex !important;
+  }
+  .sidebar.hidden {
     display: none !important;
-    opacity: 0 !important;
-    visibility: hidden !important;
-    transform: translateY(10px) !important;
   }
 }
-/* Ensure dropdowns show when .open, overriding any previous rules */
-.filter-dropdown.open {
-  display: block !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-  transform: translateY(0) !important;
+/* Desktop hover for filter dropdown */
+@media (min-width: 769px) {
+  .filter-container:hover .filter-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  .filter-container:hover .filter-button::after {
+    transform: rotate(180deg);
+  }
 }
