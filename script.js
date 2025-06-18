@@ -50,6 +50,59 @@ function filterGallery(category) {
         btn.classList.add('bg-stone-100', 'text-stone-800');
     });
 
+    // Sub-category filtering
+    const dropdownItems = document.querySelectorAll('.filter-dropdown-item');
+    dropdownItems.forEach(item => {
+        item.addEventListener('click', function () {
+            const parent = this.closest('.filter-container');
+            // Toggle active highlight
+            parent.querySelectorAll('.filter-dropdown-item')
+                .forEach(i => i.classList.remove('active'));
+            this.classList.add('active');
+
+            // Reset main‐button styling
+            filterButtons.forEach(btn => {
+                btn.classList.remove('bg-stone-900', 'text-white');
+                btn.classList.add('bg-stone-100', 'text-stone-800');
+            });
+
+            const category = this.dataset.category;
+            const subcat = this.dataset.subcategory;
+            const parentBtn = parent.querySelector('.filter-button');
+
+            // Highlight the parent category button
+            parentBtn.classList.remove('bg-stone-100', 'text-stone-800');
+            parentBtn.classList.add('bg-stone-900', 'text-white');
+
+            // Hide all
+            galleryItems.forEach(item => {
+                item.classList.remove('show');
+                item.style.display = 'none';
+            });
+
+            // Filter by both category and (unless “all”) subcategory
+            const matching = Array.from(galleryItems).filter(item => {
+                const okCat = (category === 'all' || item.dataset.category === category);
+                const okSub = (subcat === 'all' || item.dataset.subcategory === subcat);
+                return okCat && okSub;
+            });
+
+            // Show up to visibleItems items
+            matching.slice(0, visibleItems).forEach((item, idx) => {
+                setTimeout(() => {
+                    item.style.display = 'block';
+                    item.classList.add('show');
+                    item.style.height = 'auto';
+                    item.style.margin = '';
+                    item.style.padding = '';
+                }, idx * 100);
+            });
+
+            // Toggle “Load More”
+            loadMoreBtn.style.display = matching.length > visibleItems ? 'block' : 'none';
+        });
+    });
+
     // Add active styling to clicked button
     event.currentTarget.classList.remove('bg-stone-100', 'text-stone-800');
     event.currentTarget.classList.add('bg-stone-900', 'text-white');

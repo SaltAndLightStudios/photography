@@ -103,217 +103,305 @@
                     <div class="flex flex-wrap gap-4 mb-10">
                         <button class="portfolio-filter px-6 py-2 bg-stone-900 text-white rounded-sm"
                             data-category="all">All</button>
-                        <button
-                            class="portfolio-filter px-6 py-2 bg-stone-100 text-stone-800 hover:bg-stone-200 transition-colors rounded-sm"
-                            data-category="gulf-coast">Gulf Coast</button>
-                        <button
-                            class="portfolio-filter px-6 py-2 bg-stone-100 text-stone-800 hover:bg-stone-200 transition-colors rounded-sm"
-                            data-category="travel">Travel</button>
-                        <button
-                            class="portfolio-filter px-6 py-2 bg-stone-100 text-stone-800 hover:bg-stone-200 transition-colors rounded-sm"
-                            data-category="events">Events</button>
-                        <button
-                            class="portfolio-filter px-6 py-2 bg-stone-100 text-stone-800 hover:bg-stone-200 transition-colors rounded-sm"
-                            data-category="freestyle">Freestyle</button>
-                        <button
-                            class="portfolio-filter px-6 py-2 bg-stone-100 text-stone-800 hover:bg-stone-200 transition-colors rounded-sm"
-                            data-category="lifestyle">Lifestyle</button>
-                        <button
-                            class="portfolio-filter px-6 py-2 bg-stone-100 text-stone-800 hover:bg-stone-200 transition-colors rounded-sm"
-                            data-category="portraits">Portraits</button>
-                        <button
-                            class="portfolio-filter px-6 py-2 bg-stone-100 text-stone-800 hover:bg-stone-200 transition-colors rounded-sm"
-                            data-category="film">Film</button>
+                        <div class="filter-container">
+                            <button
+                                class="portfolio-filter filter-button px-6 py-2 bg-stone-100 text-stone-800 hover:bg-stone-200 transition-colors rounded-sm"
+                                data-category="gulf-coast">Gulf Coast
+                            </button>
+                            <div class="filter-dropdown">
+                                <div class="filter-dropdown-item active" data-category="gulf-coast"
+                                    data-subcategory="all">All</div>
+                                <div class="filter-dropdown-item" data-category="gulf-coast"
+                                    data-subcategory="lighthouses">Lighthouses</div>
+                                <div class="filter-dropdown-item" data-category="gulf-coast"
+                                    data-subcategory="seascapes">Sea Scapes</div>
+                                <div class="filter-dropdown-item" data-category="gulf-coast"
+                                    data-subcategory="wildlife">Wildlife</div>
+                            </div>
+                        </div>
+                        <div class="filter-container">
+                            <button
+                                class="portfolio-filter filter-button px-6 py-2 bg-stone-100 text-stone-800 hover:bg-stone-200 transition-colors rounded-sm"
+                                data-category="travel">Travel</button>
+                            <div class="filter-dropdown">
+                                <div class="filter-dropdown-item active" data-category="travel" data-subcategory="all">
+                                    All
+                                </div>
+                                <div class="filter-dropdown-item" data-category="travel" data-subcategory="london">
+                                    London
+                                </div>
+                                <div class="filter-dropdown-item" data-category="travel" data-subcategory="bucharest">
+                                    Bucharest
+                                </div>
+                                <div class="filter-dropdown-item" data-category="travel" data-subcategory="new-york">
+                                    New York
+                                </div>
+                            </div>
+                        </div>
+                        <div class="filter-container">
+                            <button
+                                class="portfolio-filter filter-button px-6 py-2 bg-stone-100 text-stone-800 hover:bg-stone-200 transition-colors rounded-sm"
+                                data-category="events">Events</button>
+                            <div class="filter-dropdown">
+                                <div class="filter-dropdown-item active" data-category="events" data-subcategory="all">
+                                    All
+                                </div>
+                                <div class="filter-dropdown-item" data-category="events" data-subcategory="fbcbiloxi">
+                                    First Baptist Church Biloxi
+                                </div>
+                                <div class="filter-dropdown-item" data-category="events" data-subcategory="tunnels-to-towers">
+                                    Tunnels To Towers
+                                </div>
+                            </div>
+                        </div>
+                        <div class="filter-container">
+                            <button
+                                class="portfolio-filter filter-button px-6 py-2 bg-stone-100 text-stone-800 hover:bg-stone-200 transition-colors rounded-sm"
+                                data-category="freestyle">Freestyle</button>
+                            <div class="filter-dropdown">
+                                <div class="filter-dropdown-item active" data-category="freestyle" data-subcategory="all">
+                                    All
+                                </div>
+                                <div class="filter-dropdown-item" data-category="freestyle" data-subcategory="community">
+                                    Community
+                                </div>
+                            </div>
+                        </div>
+                        <div class="filter-container">
+                            <button
+                                class="portfolio-filter filter-button px-6 py-2 bg-stone-100 text-stone-800 hover:bg-stone-200 transition-colors rounded-sm"
+                                data-category="lifestyle">Lifestyle</button>
+                            <div class="filter-dropdown">
+                                <div class="filter-dropdown-item active" data-category="lifestyle" data-subcategory="all">
+                                    All
+                                </div>
+                                <div class="filter-dropdown-item" data-category="lifestyle" data-subcategory="family">
+                                    Family
+                                </div>
+                                <div class="filter-dropdown-item" data-category="lifestyle" data-subcategory="seniors">
+                                    Seniors
+                                </div>
+                            </div>
+                        </div>
+                        <div class="filter-container">
+                            <button
+                                class="portfolio-filter filter-button px-6 py-2 bg-stone-100 text-stone-800 hover:bg-stone-200 transition-colors rounded-sm"
+                                data-category="portraits">Portraits</button>
+                            <div class="filter-dropdown">
+                                <div class="filter-dropdown-item active" data-category="travel" data-subcategory="all">
+                                    All
+                                </div>
+                                <div class="filter-dropdown-item" data-category="portraits" data-subcategory="casual">
+                                    Casual
+                                </div>
+                                <div class="filter-dropdown-item" data-category="portraits" data-subcategory="headshots">
+                                    Headshots
+                                </div>
+                            </div>
+                        </div>
+                        <div class="filter-container">
+                            <button
+                                class="portfolio-filter filter-button px-6 py-2 bg-stone-100 text-stone-800 hover:bg-stone-200 transition-colors rounded-sm"
+                                data-category="film">Film</button>
+                            <div class="filter-dropdown">
+                                <div class="filter-dropdown-item active" data-category="film" data-subcategory="all">
+                                    All
+                                </div>
+                                <div class="filter-dropdown-item" data-category="film" data-subcategory="cannon-ae-1">
+                                    Cannon AE-1
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Gallery Grid - Now using a dynamic layout -->
                     <div class="gallery-grid" id="gallery-grid">
                         <!-- Gulf Coast Images -->
-                        <div class="gallery-item" data-category="gulf-coast">
+                        <div class="gallery-item" data-category="gulf-coast" data-subcategory="seascapes">
                             <img src="./Images/Gulf-Coast/frontbeach_sunset.JPG" alt="Ocean Springs Sunset"
                                 class="w-full h-80 object-cover">
                         </div>
 
-                        <div class="gallery-item" data-category="gulf-coast">
+                        <div class="gallery-item" data-category="gulf-coast" data-subcategory="wildlife">
                             <img src="./Images/Gulf-Coast/birdandfish.JPG" alt="Osprey Catch"
                                 class="w-full h-80 object-cover">
                         </div>
 
-                        <div class="gallery-item" data-category="gulf-coast">
+                        <div class="gallery-item" data-category="gulf-coast" data-subcategory="lighthouses">
                             <img src="./Images/Gulf-Coast/old_lighthouse.JPG" alt="Biloxi Little Lighthouse"
                                 class="w-full h-80 object-cover">
                         </div>
 
-                        <div class="gallery-item" data-category="gulf-coast">
+                        <div class="gallery-item" data-category="gulf-coast" data-subcategory="lighthouses">
                             <img src="./Images/Gulf-Coast/closeup_biloxi_lighthouse.jpg" alt="Biloxi Lighthouse"
                                 class="w-full h-80 object-cover">
                         </div>
 
-                        <div class="gallery-item" data-category="gulf-coast">
+                        <div class="gallery-item" data-category="gulf-coast" data-subcategory="lighthouses">
                             <img src="./Images/Gulf-Coast/square_lighthouse.JPG" alt="The Loop Lighthouse"
                                 class="w-full h-80 object-cover">
                         </div>
 
-                        <div class="gallery-item" data-category="gulf-coast">
+                        <div class="gallery-item" data-category="gulf-coast" data-subcategory="seascapes">
                             <img src="./Images/Gulf-Coast/jones_park_port.jpg" alt="Gulfport Harbor"
                                 class="w-full h-80 object-cover">
                         </div>
 
                         <!-- Travel Images -->
-                        <div class="gallery-item" data-category="travel">
+                        <div class="gallery-item" data-category="travel" data-subcategory="london">
                             <img src="./Images/Travel/bigben_framed_London.JPG" alt="Big Ben"
                                 class="w-full h-80 object-cover">
                         </div>
 
-                        <div class="gallery-item" data-category="travel">
+                        <div class="gallery-item" data-category="travel" data-subcategory="london">
                             <img src="./Images/Travel/Millenium_bridge_london.JPG" alt="Millenium Bridge"
                                 class="w-full h-80 object-cover">
                         </div>
 
-                        <div class="gallery-item" data-category="travel">
+                        <div class="gallery-item" data-category="travel" data-subcategory="london">
                             <img src="./Images/Travel/Primrose_Hill_London.JPG" alt="Primrose Hill"
                                 class="w-full h-80 object-cover">
                         </div>
 
-                        <div class="gallery-item" data-category="travel">
+                        <div class="gallery-item" data-category="travel" data-subcategory="london">
                             <img src="./Images/Travel/Tower_Bridge.JPG" alt="Tower Bridge"
                                 class="w-full h-80 object-cover">
                         </div>
 
-                        <div class="gallery-item" data-category="travel">
+                        <div class="gallery-item" data-category="travel" data-subcategory="london">
                             <img src="./Images/Travel/Tower_Bridge_Full.JPG" alt="Tower Bridge"
                                 class="w-full h-80 object-cover">
                         </div>
 
-                        <div class="gallery-item" data-category="travel">
+                        <div class="gallery-item" data-category="travel" data-subcategory="london">
                             <img src="./Images/Travel/st_pauls_London.JPG" alt="St Paul's Cathedral"
                                 class="w-full h-80 object-cover">
                         </div>
 
-                        <div class="gallery-item" data-category="travel">
+                        <div class="gallery-item" data-category="travel" data-subcategory="london">
                             <img src="./Images/Travel/london_architecture.JPG" alt="London Architecture"
                                 class="w-full h-80 object-cover">
                         </div>
 
-                        <div class="gallery-item" data-category="travel">
+                        <div class="gallery-item" data-category="travel" data-subcategory="london">
                             <img src="./Images/Travel/lumen_London.JPG" alt="Let Light Shine Out of Darkness"
                                 class="w-full h-80 object-cover">
                         </div>
 
-                        <div class="gallery-item" data-category="travel">
+                        <div class="gallery-item" data-category="travel" data-subcategory="london">
                             <img src="./Images/Travel/the_tube_london.JPG" alt="Mind The Gap"
                                 class="w-full h-80 object-cover">
                         </div>
 
-                        <div class="gallery-item" data-category="travel">
+                        <div class="gallery-item" data-category="travel" data-subcategory="london">
                             <img src="./Images/Travel/way_out_tube_london.JPG" alt="The Way Out"
                                 class="w-full h-80 object-cover">
                         </div>
 
-                        <div class="gallery-item" data-category="travel">
+                        <div class="gallery-item" data-category="travel" data-subcategory="london">
                             <img src="./Images/Travel/london_stone_path.JPG" alt="Proverbs 4:26"
                                 class="w-full h-80 object-cover">
                         </div>
 
-                        <div class="gallery-item" data-category="travel">
+                        <div class="gallery-item" data-category="travel" data-subcategory="london">
                             <img src="./Images/Travel/public_isolation_london.JPG" alt="Public Isolation"
                                 class="w-full h-80 object-cover">
                         </div>
 
-                        <div class="gallery-item" data-category="travel">
+                        <div class="gallery-item" data-category="travel" data-subcategory="london">
                             <img src="./Images/Travel/london_painter.JPEG" alt="London Artist"
                                 class="w-full h-80 object-cover">
                         </div>
 
-                        <div class="gallery-item" data-category="travel">
+                        <div class="gallery-item" data-category="travel" data-subcategory="london">
                             <img src="./Images/Travel/london_crosswalk.JPG" alt="London Streets"
                                 class="w-full h-80 object-cover">
                         </div>
 
-                        <div class="gallery-item" data-category="travel">
+                        <div class="gallery-item" data-category="travel" data-subcategory="london">
                             <img src="./Images/Travel/old_man_london.JPG" alt="People of London"
                                 class="w-full h-80 object-cover">
                         </div>
 
 
                         <!-- Event Images -->
-                        <div class="gallery-item" data-category="events">
+                        <div class="gallery-item" data-category="events" data-subcategory="fbcbiloxi">
                             <img src="./Images/Events/praise2.jpg" alt="Praise" class="w-full h-80 object-cover">
                         </div>
 
-                        <div class="gallery-item" data-category="events">
+                        <div class="gallery-item" data-category="events" data-subcategory="fbcbiloxi">
                             <img src="./Images/Events/praise1.jpg" alt="Praise" class="w-full h-80 object-cover">
                         </div>
 
-                        <div class="gallery-item" data-category="events">
+                        <div class="gallery-item" data-category="events" data-subcategory="fbcbiloxi">
                             <img src="./Images/Events/Easter1.JPEG" alt="Easter" class="w-full h-80 object-cover">
                         </div>
 
-                        <div class="gallery-item" data-category="events">
+                        <div class="gallery-item" data-category="events" data-subcategory="fbcbiloxi">
                             <img src="./Images/Events/candlelightservice.jpg" alt="Candlelight Service"
                                 class="w-full h-80 object-cover">
                         </div>
 
-                        <div class="gallery-item" data-category="events">
+                        <div class="gallery-item" data-category="events" data-subcategory="fbcbiloxi">
                             <img src="./Images/Events/scc_preach.JPG" alt="Singing Christmas Tree Biloxi"
                                 class="w-full h-80 object-cover">
                         </div>
 
-                        <div class="gallery-item" data-category="events">
+                        <div class="gallery-item" data-category="events" data-subcategory="fbcbiloxi">
                             <img src="./Images/Events/scc_violin.jpg" alt="Singing Christmas Tree Biloxi"
                                 class="w-full h-80 object-cover">
                         </div>
 
                         <!-- Freestyle Images -->
-                        <div class="gallery-item" data-category="freestyle">
+                        <div class="gallery-item" data-category="freestyle" data-subcategory="community">
                             <img src="./Images/Freestyle/finch_coffee.JPG" alt="A Splash of Finch Coffee"
                                 class="w-full h-80 object-cover">
                         </div>
 
 
                         <!-- Lifestyle Images -->
-                        <div class="gallery-item" data-category="lifestyle">
-                            <img src="./Images/Lifestyle/kids_on_beach.jpg" alt="Wedding couple"
+                        <div class="gallery-item" data-category="lifestyle" data-subcategory="family">
+                            <img src="./Images/Lifestyle/kids_on_beach.jpg" alt="Kiddos on the Beach"
                                 class="w-full h-80 object-cover">
                         </div>
 
 
                         <!-- Portrait Images -->
-                        <div class="gallery-item" data-category="portraits">
+                        <div class="gallery-item" data-category="portraits" data-subcategory="casual">
                             <img src="./Images/Portraits/cody.jpg" alt="" class="w-full h-80 object-cover">
                         </div>
 
                         <!-- Film Images -->
-                        <div class="gallery-item" data-category="film">
+                        <div class="gallery-item" data-category="film" data-subcategory="cannon-ae-1">
                             <img src="./Images/Film/starcase_film.JPG" alt="Spiral Staircase"
                                 class="w-full h-80 object-cover">
                         </div>
 
-                        <div class="gallery-item" data-category="film">
+                        <div class="gallery-item" data-category="film" data-subcategory="cannon-ae-1">
                             <img src="./Images/Film/bookcase_film.jpg" alt="Bookshelf" class="w-full h-80 object-cover">
                         </div>
 
-                        <div class="gallery-item" data-category="film">
+                        <div class="gallery-item" data-category="film" data-subcategory="cannon-ae-1">
                             <img src="./Images/Film/catisland_coffee_film.JPG" alt="Cat Island Coffeehouse"
                                 class="w-full h-80 object-cover">
                         </div>
 
-                        <div class="gallery-item" data-category="film">
+                        <div class="gallery-item" data-category="film" data-subcategory="cannon-ae-1">
                             <img src="./Images/Film/cs_portrait.JPG" alt="Black and White Portrait"
                                 class="w-full h-80 object-cover">
                         </div>
 
-                        <div class="gallery-item" data-category="film">
+                        <div class="gallery-item" data-category="film" data-subcategory="cannon-ae-1">
                             <img src="./Images/Film/lighthouse_film.JPG" alt="Biloxi Lighthouse"
                                 class="w-full h-80 object-cover">
                         </div>
 
-                        <div class="gallery-item" data-category="film">
+                        <div class="gallery-item" data-category="film" data-subcategory="cannon-ae-1">
                             <img src="./Images/Film/architecture_film.jpg" alt="Downtown Biloxi Architecture"
                                 class="w-full h-80 object-cover">
                         </div>
 
-                        <div class="gallery-item" data-category="film">
+                        <div class="gallery-item" data-category="film" data-subcategory="cannon-ae-1"> 
                             <img src="./Images/Film/wallart_film.jpg" alt="Downtown Biloxi Wall Art"
                                 class="w-full h-80 object-cover">
                         </div>
