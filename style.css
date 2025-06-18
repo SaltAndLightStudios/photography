@@ -751,9 +751,8 @@ footer {
     transform: translateY(0) !important;
   }
 }
-/* Ensure dropdowns show when .open or on hover, overriding any previous rules */
-.filter-dropdown.open,
-.filter-container:hover .filter-dropdown {
+/* Ensure dropdowns show when .open, overriding any previous rules */
+.filter-dropdown.open {
   display: block !important;
   opacity: 1 !important;
   visibility: visible !important;
