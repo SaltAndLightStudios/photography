@@ -155,6 +155,9 @@ filterButtons.forEach(button => {
         const category = this.getAttribute('data-category');
         filterGallery(category);
 
+        // Close other open sub-menus
+        document.querySelectorAll('.filter-dropdown.open').forEach(dd => dd.classList.remove('open'));
+
         // ─── MOBILE: toggle the sub-category dropdown ───
         const parent   = this.closest('.filter-container');
         const dropdown = parent.querySelector('.filter-dropdown');
