@@ -38,6 +38,7 @@ const galleryItems = document.querySelectorAll('.gallery-item');
 const loadMoreBtn = document.getElementById('load-more');
 let currentCategory = 'all';
 let visibleItems = 6;
+let currentSubcategory = 'all';
 
 // Function to filter gallery items with dynamic layout
 function filterGallery(category) {
@@ -68,6 +69,8 @@ function filterGallery(category) {
 
             const category = this.dataset.category;
             const subcat = this.dataset.subcategory;
+            currentCategory = category;
+            currentSubcategory = subcat;
             const parentBtn = parent.querySelector('.filter-button');
 
             // Highlight the parent category button
@@ -154,11 +157,64 @@ filterButtons.forEach(button => {
     });
 });
 
+// Bind sub-category clicks globally so images load immediately
+document.querySelectorAll('.filter-dropdown-item').forEach(item => {
+    item.addEventListener('click', function (event) {
+        const parent = this.closest('.filter-container');
+        // Highlight selected sub-category
+        parent.querySelectorAll('.filter-dropdown-item')
+            .forEach(i => i.classList.remove('active'));
+        this.classList.add('active');
+        // Reset styling on main buttons
+        filterButtons.forEach(btn => {
+            btn.classList.remove('bg-stone-900', 'text-white');
+            btn.classList.add('bg-stone-100', 'text-stone-800');
+        });
+        // Update globals
+        const category = this.dataset.category;
+        const subcat = this.dataset.subcategory;
+        currentCategory = category;
+        currentSubcategory = subcat;
+        visibleItems = 6;
+        // Highlight parent category button
+        const parentBtn = parent.querySelector('.filter-button');
+        parentBtn.classList.remove('bg-stone-100', 'text-stone-800');
+        parentBtn.classList.add('bg-stone-900', 'text-white');
+        // Hide all items
+        galleryItems.forEach(it => {
+            it.classList.remove('show');
+            it.style.display = 'none';
+            it.style.height = '0';
+            it.style.margin = '0';
+            it.style.padding = '0';
+        });
+        // Filter and show initial sub-category items
+        const matching = Array.from(galleryItems).filter(it => {
+            const okCat = (category === 'all' || it.dataset.category === category);
+            const okSub = (subcat === 'all' || it.dataset.subcategory === subcat);
+            return okCat && okSub;
+        });
+        matching.slice(0, visibleItems).forEach((it, idx) => {
+            setTimeout(() => {
+                it.style.display = 'block';
+                it.classList.add('show');
+                it.style.height = 'auto';
+                it.style.margin = '';
+                it.style.padding = '';
+            }, idx * 100);
+        });
+        // Toggle “Load More”
+        loadMoreBtn.style.display = (matching.length > visibleItems) ? 'block' : 'none';
+    });
+});
+
 // Load more functionality
 loadMoreBtn.addEventListener('click', function () {
     // Get all items that match the current category
     const matchingItems = Array.from(galleryItems).filter(item => {
-        return currentCategory === 'all' || item.getAttribute('data-category') === currentCategory;
+        const okCat = (currentCategory === 'all' || item.dataset.category === currentCategory);
+        const okSub = (currentSubcategory === 'all' || item.dataset.subcategory === currentSubcategory);
+        return okCat && okSub;
     });
 
     // Calculate how many more items to show
