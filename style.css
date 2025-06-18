@@ -743,12 +743,13 @@ footer {
     display: block;
     padding: 0.5rem 1rem;
   }
-  /* also show on container hover (or touch “hover”) */
+
+    /* Prevent hover from keeping dropdown open on mobile */
   .filter-container:hover .filter-dropdown {
-    display: block !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-    transform: translateY(0) !important;
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    transform: translateY(10px) !important;
   }
 }
 /* Ensure dropdowns show when .open, overriding any previous rules */
