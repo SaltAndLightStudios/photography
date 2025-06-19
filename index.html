@@ -103,139 +103,146 @@
                     <h2 class="text-3xl md:text-4xl font-semibold mb-2">Portfolio</h2>
                     <!--<p class="text-stone-600 mb-12">A glimpse of our work capturing God's beautiful creation</p>-->
 
-                    <!-- Portfolio Categories -->
-                    <div class="flex flex-wrap gap-4 mb-10">
-                        <button class="portfolio-filter px-6 py-2 bg-stone-900 text-white rounded-sm"
-                            data-category="all">All</button>
-                        <div class="filter-container">
-                            <button
-                                class="portfolio-filter filter-button px-6 py-2 bg-stone-100 text-stone-800 hover:bg-stone-200 transition-colors rounded-sm"
-                                data-category="gulf-coast">Gulf Coast
-                            </button>
-                            <div class="filter-dropdown">
-                                <div class="filter-dropdown-item active" data-category="gulf-coast"
-                                    data-subcategory="all">All</div>
-                                <div class="filter-dropdown-item" data-category="gulf-coast"
-                                    data-subcategory="lighthouses">Lighthouses</div>
-                                <div class="filter-dropdown-item" data-category="gulf-coast"
-                                    data-subcategory="seascapes">Sea Scapes</div>
-                                <div class="filter-dropdown-item" data-category="gulf-coast"
-                                    data-subcategory="wildlife">Wildlife</div>
-                                <div class="filter-dropdown-item" data-category="gulf-coast"
-                                    data-subcategory="landscapes">Landscapes</div>
-                                <div class="filter-dropdown-item" data-category="gulf-coast"
-                                    data-subcategory="architecture">Architecture</div>
-                            </div>
-                        </div>
-                        <div class="filter-container">
-                            <button
-                                class="portfolio-filter filter-button px-6 py-2 bg-stone-100 text-stone-800 hover:bg-stone-200 transition-colors rounded-sm"
-                                data-category="travel">Travel</button>
-                            <div class="filter-dropdown">
-                                <div class="filter-dropdown-item active" data-category="travel" data-subcategory="all">
-                                    All
-                                </div>
-                                <div class="filter-dropdown-item" data-category="travel" data-subcategory="london">
-                                    London
-                                </div>
-                                <div class="filter-dropdown-item" data-category="travel" data-subcategory="romania">
-                                    Romania
-                                </div>
-                                <div class="filter-dropdown-item" data-category="travel" data-subcategory="new-york">
-                                    New York
-                                </div>
-                                <div class="filter-dropdown-item" data-category="travel" data-subcategory="bahamas">
-                                    Bahamas
-                                </div>
-                                <div class="filter-dropdown-item" data-category="travel" data-subcategory="chicago">
-                                    Chicago
+                    <!-- Responsive Filter Wrapper -->
+                    <div class="relative mb-10">
+                        <!-- Mobile Filter Toggle -->
+                        <button id="mobile-filter-toggle" class="md:hidden px-4 py-2 bg-stone-900 text-white rounded-sm w-full text-left">
+                            Filter Categories ▼
+                        </button>
+                        <!-- Actual Filter Buttons Container -->
+                        <div id="mobile-filter-panel" class="hidden md:flex flex-wrap gap-4 mt-4 md:mt-0">
+                            <button class="portfolio-filter px-6 py-2 bg-stone-900 text-white rounded-sm"
+                                data-category="all">All</button>
+                            <div class="filter-container">
+                                <button
+                                    class="portfolio-filter filter-button px-6 py-2 bg-stone-100 text-stone-800 hover:bg-stone-200 transition-colors rounded-sm"
+                                    data-category="gulf-coast">Gulf Coast
+                                </button>
+                                <div class="filter-dropdown">
+                                    <div class="filter-dropdown-item active" data-category="gulf-coast"
+                                        data-subcategory="all">All</div>
+                                    <div class="filter-dropdown-item" data-category="gulf-coast"
+                                        data-subcategory="lighthouses">Lighthouses</div>
+                                    <div class="filter-dropdown-item" data-category="gulf-coast"
+                                        data-subcategory="seascapes">Sea Scapes</div>
+                                    <div class="filter-dropdown-item" data-category="gulf-coast"
+                                        data-subcategory="wildlife">Wildlife</div>
+                                    <div class="filter-dropdown-item" data-category="gulf-coast"
+                                        data-subcategory="landscapes">Landscapes</div>
+                                    <div class="filter-dropdown-item" data-category="gulf-coast"
+                                        data-subcategory="architecture">Architecture</div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="filter-container">
-                            <button
-                                class="portfolio-filter filter-button px-6 py-2 bg-stone-100 text-stone-800 hover:bg-stone-200 transition-colors rounded-sm"
-                                data-category="events">Events</button>
-                            <div class="filter-dropdown">
-                                <div class="filter-dropdown-item active" data-category="events" data-subcategory="all">
-                                    All
-                                </div>
-                                <div class="filter-dropdown-item" data-category="events" data-subcategory="fbcbiloxi">
-                                    First Baptist Church Biloxi
-                                </div>
-                                <div class="filter-dropdown-item" data-category="events"
-                                    data-subcategory="tunnels-to-towers">
-                                    Tunnels To Towers
-                                </div>
-                            </div>
-                        </div>
-                        <div class="filter-container">
-                            <button
-                                class="portfolio-filter filter-button px-6 py-2 bg-stone-100 text-stone-800 hover:bg-stone-200 transition-colors rounded-sm"
-                                data-category="freestyle">Freestyle</button>
-                            <div class="filter-dropdown">
-                                <div class="filter-dropdown-item active" data-category="freestyle"
-                                    data-subcategory="all">
-                                    All
-                                </div>
-                                <div class="filter-dropdown-item" data-category="freestyle"
-                                    data-subcategory="community">
-                                    Community
-                                </div>
-                                <div class="filter-dropdown-item" data-category="freestyle"
-                                    data-subcategory="landscapes">
-                                    Landscapes
-                                </div>
-                                <div class="filter-dropdown-item" data-category="freestyle"
-                                    data-subcategory="architecture">
-                                    Architecture
+                            <div class="filter-container">
+                                <button
+                                    class="portfolio-filter filter-button px-6 py-2 bg-stone-100 text-stone-800 hover:bg-stone-200 transition-colors rounded-sm"
+                                    data-category="travel">Travel</button>
+                                <div class="filter-dropdown">
+                                    <div class="filter-dropdown-item active" data-category="travel" data-subcategory="all">
+                                        All
+                                    </div>
+                                    <div class="filter-dropdown-item" data-category="travel" data-subcategory="london">
+                                        London
+                                    </div>
+                                    <div class="filter-dropdown-item" data-category="travel" data-subcategory="romania">
+                                        Romania
+                                    </div>
+                                    <div class="filter-dropdown-item" data-category="travel" data-subcategory="new-york">
+                                        New York
+                                    </div>
+                                    <div class="filter-dropdown-item" data-category="travel" data-subcategory="bahamas">
+                                        Bahamas
+                                    </div>
+                                    <div class="filter-dropdown-item" data-category="travel" data-subcategory="chicago">
+                                        Chicago
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="filter-container">
-                            <button
-                                class="portfolio-filter filter-button px-6 py-2 bg-stone-100 text-stone-800 hover:bg-stone-200 transition-colors rounded-sm"
-                                data-category="lifestyle">Lifestyle</button>
-                            <div class="filter-dropdown">
-                                <div class="filter-dropdown-item active" data-category="lifestyle"
-                                    data-subcategory="all">
-                                    All
-                                </div>
-                                <div class="filter-dropdown-item" data-category="lifestyle" data-subcategory="family">
-                                    Family
-                                </div>
-                                <div class="filter-dropdown-item" data-category="lifestyle" data-subcategory="seniors">
-                                    Seniors
-                                </div>
-                            </div>
-                        </div>
-                        <div class="filter-container">
-                            <button
-                                class="portfolio-filter filter-button px-6 py-2 bg-stone-100 text-stone-800 hover:bg-stone-200 transition-colors rounded-sm"
-                                data-category="portraits">Portraits</button>
-                            <div class="filter-dropdown">
-                                <div class="filter-dropdown-item active" data-category="travel" data-subcategory="all">
-                                    All
-                                </div>
-                                <div class="filter-dropdown-item" data-category="portraits" data-subcategory="casual">
-                                    Casual
-                                </div>
-                                <div class="filter-dropdown-item" data-category="portraits"
-                                    data-subcategory="headshots">
-                                    Headshots
+                            <div class="filter-container">
+                                <button
+                                    class="portfolio-filter filter-button px-6 py-2 bg-stone-100 text-stone-800 hover:bg-stone-200 transition-colors rounded-sm"
+                                    data-category="events">Events</button>
+                                <div class="filter-dropdown">
+                                    <div class="filter-dropdown-item active" data-category="events" data-subcategory="all">
+                                        All
+                                    </div>
+                                    <div class="filter-dropdown-item" data-category="events" data-subcategory="fbcbiloxi">
+                                        First Baptist Church Biloxi
+                                    </div>
+                                    <div class="filter-dropdown-item" data-category="events"
+                                        data-subcategory="tunnels-to-towers">
+                                        Tunnels To Towers
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="filter-container">
-                            <button
-                                class="portfolio-filter filter-button px-6 py-2 bg-stone-100 text-stone-800 hover:bg-stone-200 transition-colors rounded-sm"
-                                data-category="film">Film</button>
-                            <div class="filter-dropdown">
-                                <div class="filter-dropdown-item active" data-category="film" data-subcategory="all">
-                                    All
+                            <div class="filter-container">
+                                <button
+                                    class="portfolio-filter filter-button px-6 py-2 bg-stone-100 text-stone-800 hover:bg-stone-200 transition-colors rounded-sm"
+                                    data-category="freestyle">Freestyle</button>
+                                <div class="filter-dropdown">
+                                    <div class="filter-dropdown-item active" data-category="freestyle"
+                                        data-subcategory="all">
+                                        All
+                                    </div>
+                                    <div class="filter-dropdown-item" data-category="freestyle"
+                                        data-subcategory="community">
+                                        Community
+                                    </div>
+                                    <div class="filter-dropdown-item" data-category="freestyle"
+                                        data-subcategory="landscapes">
+                                        Landscapes
+                                    </div>
+                                    <div class="filter-dropdown-item" data-category="freestyle"
+                                        data-subcategory="architecture">
+                                        Architecture
+                                    </div>
                                 </div>
-                                <div class="filter-dropdown-item" data-category="film" data-subcategory="canon-ae-1">
-                                    Canon AE-1
+                            </div>
+                            <div class="filter-container">
+                                <button
+                                    class="portfolio-filter filter-button px-6 py-2 bg-stone-100 text-stone-800 hover:bg-stone-200 transition-colors rounded-sm"
+                                    data-category="lifestyle">Lifestyle</button>
+                                <div class="filter-dropdown">
+                                    <div class="filter-dropdown-item active" data-category="lifestyle"
+                                        data-subcategory="all">
+                                        All
+                                    </div>
+                                    <div class="filter-dropdown-item" data-category="lifestyle" data-subcategory="family">
+                                        Family
+                                    </div>
+                                    <div class="filter-dropdown-item" data-category="lifestyle" data-subcategory="seniors">
+                                        Seniors
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="filter-container">
+                                <button
+                                    class="portfolio-filter filter-button px-6 py-2 bg-stone-100 text-stone-800 hover:bg-stone-200 transition-colors rounded-sm"
+                                    data-category="portraits">Portraits</button>
+                                <div class="filter-dropdown">
+                                    <div class="filter-dropdown-item active" data-category="travel" data-subcategory="all">
+                                        All
+                                    </div>
+                                    <div class="filter-dropdown-item" data-category="portraits" data-subcategory="casual">
+                                        Casual
+                                    </div>
+                                    <div class="filter-dropdown-item" data-category="portraits"
+                                        data-subcategory="headshots">
+                                        Headshots
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="filter-container">
+                                <button
+                                    class="portfolio-filter filter-button px-6 py-2 bg-stone-100 text-stone-800 hover:bg-stone-200 transition-colors rounded-sm"
+                                    data-category="film">Film</button>
+                                <div class="filter-dropdown">
+                                    <div class="filter-dropdown-item active" data-category="film" data-subcategory="all">
+                                        All
+                                    </div>
+                                    <div class="filter-dropdown-item" data-category="film" data-subcategory="canon-ae-1">
+                                        Canon AE-1
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -991,7 +998,7 @@
                                 <source media="(max-width: 640px)"
                                     data-srcset="https://res.cloudinary.com/dsnvuavbj/image/upload/q_auto,f_auto,w_400/v1750353999/cody_napsj1.jpg">
                                 <img data-src="https://res.cloudinary.com/dsnvuavbj/image/upload/q_auto,f_auto,w_800/v1750353999/cody_napsj1.jpg"
-                                    alt="Casual Portrait - Cody" class="w-full h-80 object-cover">
+                                    alt="" class="w-full h-80 object-cover">
                             </picture>
                         </div>
 
@@ -1000,7 +1007,7 @@
                                 <source media="(max-width: 640px)"
                                     data-srcset="https://res.cloudinary.com/dsnvuavbj/image/upload/q_auto,f_auto,w_400/v1750354088/jw1_m5kfo1.jpg">
                                 <img data-src="https://res.cloudinary.com/dsnvuavbj/image/upload/q_auto,f_auto,w_800/v1750354088/jw1_m5kfo1.jpg"
-                                    alt="Headshot - JW" class="w-full h-80 object-cover">
+                                    alt="" class="w-full h-80 object-cover">
                             </picture>
                         </div>
 
@@ -1009,7 +1016,7 @@
                                 <source media="(max-width: 640px)"
                                     data-srcset="https://res.cloudinary.com/dsnvuavbj/image/upload/q_auto,f_auto,w_400/v1750354100/rt1_oi9mhb.jpg">
                                 <img data-src="https://res.cloudinary.com/dsnvuavbj/image/upload/q_auto,f_auto,w_800/v1750354100/rt1_oi9mhb.jpg"
-                                    alt="Headshot - RT" class="w-full h-80 object-cover">
+                                    alt="" class="w-full h-80 object-cover">
                             </picture>
                         </div>
 
@@ -1018,7 +1025,7 @@
                                 <source media="(max-width: 640px)"
                                     data-srcset="https://res.cloudinary.com/dsnvuavbj/image/upload/q_auto,f_auto,w_400/v1750354091/jh2_c2ljdg.jpg">
                                 <img data-src="https://res.cloudinary.com/dsnvuavbj/image/upload/q_auto,f_auto,w_800/v1750354091/jh2_c2ljdg.jpg"
-                                    alt="Headshot - JH" class="w-full h-80 object-cover">
+                                    alt="" class="w-full h-80 object-cover">
                             </picture>
                         </div>
 
@@ -1027,7 +1034,7 @@
                                 <source media="(max-width: 640px)"
                                     data-srcset="https://res.cloudinary.com/dsnvuavbj/image/upload/q_auto,f_auto,w_400/v1750354094/lr_qgaqm9.jpg">
                                 <img data-src="https://res.cloudinary.com/dsnvuavbj/image/upload/q_auto,f_auto,w_800/v1750354094/lr_qgaqm9.jpg"
-                                    alt="Headshot - LR" class="w-full h-80 object-cover">
+                                    alt="" class="w-full h-80 object-cover">
                             </picture>
                         </div>
 

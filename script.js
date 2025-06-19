@@ -161,7 +161,9 @@ filterButtons.forEach(button => {
         const wasOpen  = dropdown && dropdown.classList.contains('open');
         document.querySelectorAll('.filter-dropdown.open').forEach(dd => dd.classList.remove('open'));
         if (dropdown && !wasOpen) {
-            dropdown.classList.add('open');
+            dropdown.classList.add('open', 'slide-down');
+            // Remove animation class after it plays so it can be reused
+            setTimeout(() => dropdown.classList.remove('slide-down'), 300);
         }
 
         // Highlight this main category button
@@ -171,6 +173,12 @@ filterButtons.forEach(button => {
         });
         this.classList.remove('bg-stone-100','text-stone-800');
         this.classList.add('bg-stone-900','text-white');
+
+        // On mobile: collapse filter panel after selection
+        // if (window.innerWidth <= 768) {
+        //     const panel = document.getElementById('mobile-filter-panel');
+        //     if (panel) panel.classList.add('hidden');
+        // }
     });
 });
 
@@ -226,6 +234,12 @@ document.querySelectorAll('.filter-dropdown-item').forEach(item => {
         // Collapse the sub-category dropdown
         const dropdown = parent.querySelector('.filter-dropdown');
         if (dropdown) dropdown.classList.remove('open');
+
+        // On mobile: collapse filter panel after subcategory selection
+        if (window.innerWidth <= 768) {
+            const panel = document.getElementById('mobile-filter-panel');
+            if (panel) panel.classList.add('hidden');
+        }
     });
 });
 
@@ -407,6 +421,15 @@ document.addEventListener('DOMContentLoaded', function () {
     // Show/hide load more button
     if (galleryItems.length <= visibleItems) {
         loadMoreBtn.style.display = 'none';
+    }
+
+    // Mobile filter panel toggle
+    const mobileFilterToggle = document.getElementById('mobile-filter-toggle');
+    const mobileFilterPanel = document.getElementById('mobile-filter-panel');
+    if (mobileFilterToggle && mobileFilterPanel) {
+        mobileFilterToggle.addEventListener('click', () => {
+            mobileFilterPanel.classList.toggle('hidden');
+        });
     }
 });
 // collapse/expand sidebar on small screens
