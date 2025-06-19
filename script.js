@@ -458,20 +458,27 @@ navLinksMobile.forEach(link => {
 })();*/
 // Lazy load images using IntersectionObserver
 document.addEventListener("DOMContentLoaded", () => {
-    const lazyImages = document.querySelectorAll("img[data-src]");
+    const lazyElements = document.querySelectorAll("img[data-src], source[data-srcset]");
 
     const imageObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                const img = entry.target;
-                img.src = img.dataset.src;
-                img.removeAttribute("data-src");
-                observer.unobserve(img);
+                const element = entry.target;
+
+                if (element.tagName === "IMG") {
+                    element.src = element.dataset.src;
+                    element.removeAttribute("data-src");
+                } else if (element.tagName === "SOURCE") {
+                    element.srcset = element.dataset.srcset;
+                    element.removeAttribute("data-srcset");
+                }
+
+                observer.unobserve(element);
             }
         });
     });
 
-    lazyImages.forEach(img => {
-        imageObserver.observe(img);
+    lazyElements.forEach(el => {
+        imageObserver.observe(el);
     });
 });
