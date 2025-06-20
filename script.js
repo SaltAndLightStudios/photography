@@ -397,6 +397,19 @@ function updateLightboxImage() {
         lightboxCaption.textContent = img.alt;
         lightboxImg.style.opacity = '1';
 
+        // Preload next and previous images for smoother navigation
+        if (currentImageIndex + 1 < visibleImages.length) {
+            const nextImg = visibleImages[currentImageIndex + 1].querySelector('img');
+            const preloadNext = new Image();
+            preloadNext.src = nextImg?.dataset?.src || nextImg?.src;
+        }
+
+        if (currentImageIndex > 0) {
+            const prevImg = visibleImages[currentImageIndex - 1].querySelector('img');
+            const preloadPrev = new Image();
+            preloadPrev.src = prevImg?.dataset?.src || prevImg?.src;
+        }
+
         // Update navigation visibility
         updateLightboxNavigation();
     };
