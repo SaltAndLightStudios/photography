@@ -259,9 +259,12 @@ document.querySelectorAll('.filter-dropdown-item').forEach(item => {
         if (dropdown) dropdown.classList.remove('open');
 
         // On mobile: collapse filter panel after subcategory selection
-        if (window.innerWidth <= 768) {
+        if (window.matchMedia('(max-width: 768px)').matches) {
             const panel = document.getElementById('mobile-filter-panel');
+            const toggle = document.getElementById('mobile-filter-toggle');
             if (panel) panel.classList.add('hidden');
+            if (toggle) toggle.classList.remove('open');
+            document.querySelectorAll('.filter-dropdown.open').forEach(dd => dd.classList.remove('open'));
         }
     });
 });
