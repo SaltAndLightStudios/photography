@@ -153,7 +153,30 @@ function filterGallery(category) {
 filterButtons.forEach(button => {
     button.addEventListener('click', function () {
         const category = this.getAttribute('data-category');
+
+        // Check for repeated "All" click & active state
+        const isAllAlreadyActive = this.classList.contains('bg-stone-900') && category === 'all';
+
+        // If repeated "All" click on mobile, collapse menu and exit early
+        if (isAllAlreadyActive && window.innerWidth <= 768) {
+            const panel = document.getElementById('mobile-filter-panel');
+            const toggle = document.getElementById('mobile-filter-toggle');
+            if (panel) panel.classList.add('hidden');
+            if (toggle) toggle.classList.remove('open');
+            document.querySelectorAll('.filter-dropdown.open').forEach(dd => dd.classList.remove('open'));
+            return; // Exit early to prevent toggling again
+        }
+
         filterGallery(category);
+
+        // If 'All' is selected on mobile, close the entire filter panel and close any open submenus
+        if (category === 'all' && window.innerWidth <= 768) {
+            const panel = document.getElementById('mobile-filter-panel');
+            const toggle = document.getElementById('mobile-filter-toggle');
+            if (panel) panel.classList.add('hidden');
+            if (toggle) toggle.classList.remove('open');
+            document.querySelectorAll('.filter-dropdown.open').forEach(dd => dd.classList.remove('open'));
+        }
 
         // Mobile dropdown: collapse if open, open if closed
         const parent   = this.closest('.filter-container');
