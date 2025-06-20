@@ -462,6 +462,16 @@ document.addEventListener('DOMContentLoaded', function () {
         loadMoreBtn.style.display = 'none';
     }
 
+    // Preload the next few hidden images for smoother mobile experience
+    const preloadCount = 3;
+    for (let i = visibleItems; i < visibleItems + preloadCount && i < galleryItems.length; i++) {
+        const nextImg = galleryItems[i].querySelector('img');
+        if (nextImg && nextImg.dataset?.src) {
+            const preloadNext = new Image();
+            preloadNext.src = nextImg.dataset.src;
+        }
+    }
+
     // Mobile filter panel toggle
     const mobileFilterToggle = document.getElementById('mobile-filter-toggle');
     const mobileFilterPanel = document.getElementById('mobile-filter-panel');
