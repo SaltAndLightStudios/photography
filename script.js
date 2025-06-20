@@ -349,13 +349,43 @@ lightboxPrev.addEventListener('click', function () {
         currentImageIndex--;
         updateLightboxImage();
     }
+    // Optionally, you could add dynamic loading for previous if needed
 });
 
-// Navigate to next image
+// Navigate to next image with dynamic loading support
 lightboxNext.addEventListener('click', function () {
     if (currentImageIndex < visibleImages.length - 1) {
         currentImageIndex++;
         updateLightboxImage();
+    } else {
+        // Attempt to load the next batch just like the Load More button
+        const matchingItems = Array.from(galleryItems).filter(item => {
+            const okCat = (currentCategory === 'all' || item.dataset.category === currentCategory);
+            const okSub = (currentSubcategory === 'all' || item.dataset.subcategory === currentSubcategory);
+            return okCat && okSub;
+        });
+
+        const currentlyShown = document.querySelectorAll('.gallery-item.show').length;
+        const nextBatch = matchingItems.slice(currentlyShown, currentlyShown + 6);
+
+        if (nextBatch.length > 0) {
+            nextBatch.forEach((item, index) => {
+                setTimeout(() => {
+                    item.style.display = 'block';
+                    item.classList.add('show');
+                    item.style.height = 'auto';
+                    item.style.margin = '';
+                    item.style.padding = '';
+                }, index * 100);
+            });
+
+            // Ensure the new items are available before navigating
+            setTimeout(() => {
+                visibleImages = Array.from(document.querySelectorAll('.gallery-item.show'));
+                currentImageIndex++;
+                updateLightboxImage();
+            }, 700); // Give a bit of buffer time for DOM updates
+        }
     }
 });
 
@@ -425,7 +455,17 @@ function updateLightboxNavigation() {
         lightboxPrev.style.cursor = 'pointer';
     }
 
-    if (currentImageIndex === visibleImages.length - 1) {
+    // Determine if more images exist beyond the current set
+    const matchingItems = Array.from(galleryItems).filter(item => {
+        const okCat = (currentCategory === 'all' || item.dataset.category === currentCategory);
+        const okSub = (currentSubcategory === 'all' || item.dataset.subcategory === currentSubcategory);
+        return okCat && okSub;
+    });
+
+    const isLastVisible = currentImageIndex === visibleImages.length - 1;
+    const hasMore = visibleImages.length < matchingItems.length;
+
+    if (isLastVisible && !hasMore) {
         lightboxNext.style.opacity = '0.3';
         lightboxNext.style.cursor = 'default';
     } else {
