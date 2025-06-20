@@ -158,7 +158,7 @@ filterButtons.forEach(button => {
         const isAllAlreadyActive = this.classList.contains('bg-stone-900') && category === 'all';
 
         // If repeated "All" click on mobile, collapse menu and exit early
-        if (isAllAlreadyActive && window.innerWidth <= 768) {
+        if (isAllAlreadyActive && window.matchMedia('(max-width: 768px)').matches) {
             const panel = document.getElementById('mobile-filter-panel');
             const toggle = document.getElementById('mobile-filter-toggle');
             if (panel) panel.classList.add('hidden');
@@ -170,7 +170,7 @@ filterButtons.forEach(button => {
         filterGallery(category);
 
         // If 'All' is selected on mobile, close the entire filter panel and close any open submenus
-        if (category === 'all' && window.innerWidth <= 768) {
+        if (category === 'all' && window.matchMedia('(max-width: 768px)').matches) {
             const panel = document.getElementById('mobile-filter-panel');
             const toggle = document.getElementById('mobile-filter-toggle');
             if (panel) panel.classList.add('hidden');
