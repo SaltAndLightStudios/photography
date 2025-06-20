@@ -1,4 +1,7 @@
 // Navigation active state
+
+// Global flag to manage loading state for the lightbox
+let isLoadingNextBatch = false;
 const navLinks = document.querySelectorAll('.nav-link');
 const sections = document.querySelectorAll('section');
 
@@ -352,23 +355,28 @@ lightboxPrev.addEventListener('click', function () {
     // Optionally, you could add dynamic loading for previous if needed
 });
 
-// Navigate to next image with dynamic loading support
+// Navigate to next image with dynamic loading support (refactored)
 lightboxNext.addEventListener('click', function () {
+    if (isLoadingNextBatch) return;
     if (currentImageIndex < visibleImages.length - 1) {
         currentImageIndex++;
         updateLightboxImage();
     } else {
-        // Attempt to load the next batch just like the Load More button
         const matchingItems = Array.from(galleryItems).filter(item => {
             const okCat = (currentCategory === 'all' || item.dataset.category === currentCategory);
             const okSub = (currentSubcategory === 'all' || item.dataset.subcategory === currentSubcategory);
             return okCat && okSub;
         });
 
+        // Recalculate currentlyShown right before nextBatch calculation
         const currentlyShown = document.querySelectorAll('.gallery-item.show').length;
         const nextBatch = matchingItems.slice(currentlyShown, currentlyShown + 6);
 
         if (nextBatch.length > 0) {
+            isLoadingNextBatch = true;
+            // Disable next button visually and functionally
+            lightboxNext.style.opacity = '0.3';
+            lightboxNext.style.pointerEvents = 'none';
             nextBatch.forEach((item, index) => {
                 setTimeout(() => {
                     item.style.display = 'block';
@@ -379,12 +387,20 @@ lightboxNext.addEventListener('click', function () {
                 }, index * 100);
             });
 
-            // Ensure the new items are available before navigating
+            const delay = nextBatch.length * 100 + 100;
             setTimeout(() => {
+                // Refresh visibleImages after showing new items
                 visibleImages = Array.from(document.querySelectorAll('.gallery-item.show'));
-                currentImageIndex++;
-                updateLightboxImage();
-            }, 700); // Give a bit of buffer time for DOM updates
+                // Only advance if a new image is available
+                if (currentImageIndex < visibleImages.length - 1) {
+                    currentImageIndex++;
+                    updateLightboxImage();
+                }
+                isLoadingNextBatch = false;
+                // Restore next button
+                lightboxNext.style.opacity = '1';
+                lightboxNext.style.pointerEvents = 'auto';
+            }, delay);
         }
     }
 });
@@ -414,15 +430,17 @@ function updateLightboxImage() {
 
     // Create a new image to preload
     const newImg = new Image();
-    // Use the original image URL without any cropping parameters
-    const originalImageUrl = img.src.split('?')[0];
+    // Use the most reliable source for the original image URL without any cropping parameters
+    const src = img.dataset?.src || img.src;
+    const originalImageUrl = src.split('?')[0];
     newImg.src = originalImageUrl;
 
     // Add a loading animation
     lightboxImg.style.opacity = '0.5';
 
     // When the new image is loaded, update the lightbox
-    newImg.onload = function () {
+    newImg.onload = async function () {
+        await newImg.decode(); // Ensures the image is fully decoded before showing
         lightboxImg.src = newImg.src;
         lightboxCaption.textContent = img.alt;
         lightboxImg.style.opacity = '1';
