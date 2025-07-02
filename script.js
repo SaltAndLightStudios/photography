@@ -612,3 +612,615 @@ document.addEventListener("DOMContentLoaded", () => {
         imageObserver.observe(el);
     });
 });
+
+// Featured Section JavaScript - Simplified Working Carousel
+
+class FeaturedCarousel {
+    constructor() {
+        this.currentIndex = 0;
+        this.autoScrollInterval = null;
+        this.isPlaying = true;
+        this.isPaused = false;
+        this.touchStartX = 0;
+        this.touchEndX = 0;
+        this.autoScrollDelay = 5000; // 5 seconds
+        
+        // Featured images data (you can replace these URLs with your chosen images)
+        this.featuredImages = [
+            {
+                url: 'https://res.cloudinary.com/dsnvuavbj/image/upload/q_auto,f_auto,w_800/v1750348343/old_lighthouse2_tajsfg.jpg',
+                alt: 'Little Light House',
+                category: 'gulf-coast',
+                subcategory: 'lighthouses'
+            },
+            {
+                url: 'https://res.cloudinary.com/dsnvuavbj/image/upload/q_auto,f_auto,w_800/bigben_framed_London_riaqjj.jpg',
+                alt: 'Big Ben',
+                category: 'travel',
+                subcategory: 'london'
+            },
+            {
+                url: 'https://res.cloudinary.com/dsnvuavbj/image/upload/q_auto,f_auto,w_800/v1750350515/gulfport_harbor_ilivgh.jpg',
+                alt: 'Gulfport Harbor',
+                category: 'gulf-coast',
+                subcategory: 'seascapes'
+            },
+            {
+                url: 'https://res.cloudinary.com/dsnvuavbj/image/upload/q_auto,f_auto,w_800/Fagaras_Mountains_Romania_nw6cdo.jpg',
+                alt: 'Fagaras Mountains',
+                category: 'travel',
+                subcategory: 'romania'
+            },
+            {
+                url: 'https://res.cloudinary.com/dsnvuavbj/image/upload/q_auto,f_auto,w_800/v1750354111/praise2-2_yk2m5a.jpg',
+                alt: 'Praise',
+                category: 'events',
+                subcategory: 'fbcbiloxi'
+            },
+            {
+                url: 'https://res.cloudinary.com/dsnvuavbj/image/upload/q_auto,f_auto,w_800/nyc_crosswalk_xduydt.jpg',
+                alt: 'All the NYC Vibes',
+                category: 'travel',
+                subcategory: 'new-york'
+            },
+            {
+                url: 'https://res.cloudinary.com/dsnvuavbj/image/upload/q_auto,f_auto,w_800/v1750354096/kids_on_beach_xfuz2v.jpg',
+                alt: 'Kiddos on the Beach',
+                category: 'lifestyle',
+                subcategory: 'family'
+            },
+            {
+                url: 'https://res.cloudinary.com/dsnvuavbj/image/upload/q_auto,f_auto,w_800/v1750354002/starcase_film_bk1kil.jpg',
+                alt: 'Cat Island Spiral Staircase',
+                category: 'film',
+                subcategory: 'canon-ae-1'
+            },
+            {
+                url: 'https://res.cloudinary.com/dsnvuavbj/image/upload/q_auto,f_auto,w_800/v1750350889/birdandfish_nhkgen.jpg',
+                alt: 'The Osprey\'s Catch',
+                category: 'gulf-coast',
+                subcategory: 'wildlife'
+            },
+            {
+                url: 'https://res.cloudinary.com/dsnvuavbj/image/upload/q_auto,f_auto,w_800/v1750354088/jw1_m5kfo1.jpg',
+                alt: 'Portrait',
+                category: 'portraits',
+                subcategory: 'headshots'
+            }
+        ];
+        
+        this.init();
+    }
+    
+    init() {
+        this.createCarouselItems();
+        this.createIndicators();
+        this.bindEvents();
+        this.updateCarousel();
+        this.startAutoScroll();
+        this.preloadImages();
+        
+        // Accessibility
+        this.setupKeyboardNavigation();
+        this.setupAriaLabels();
+    }
+    
+    createCarouselItems() {
+        const track = document.getElementById('featured-track');
+        if (!track) return;
+        
+        track.innerHTML = '';
+        
+        this.featuredImages.forEach((image, index) => {
+            const item = document.createElement('div');
+            item.className = 'featured-item';
+            item.setAttribute('data-index', index);
+            
+            const isMobile = window.innerWidth < 768;
+            
+            if (isMobile) {
+                // Mobile: Single image layout
+                item.innerHTML = `
+                    <div class="featured-image-container">
+                        <img class="featured-image" 
+                             src="${image.url}" 
+                             alt="${image.alt}"
+                             data-image-index="${index}"
+                             loading="lazy">
+                    </div>
+                `;
+            } else {
+                // Desktop: 3 images layout (center + sides)
+                const prevIndex = (index - 1 + this.featuredImages.length) % this.featuredImages.length;
+                const nextIndex = (index + 1) % this.featuredImages.length;
+                
+                item.innerHTML = `
+                    <div class="featured-image-container featured-image-side">
+                        <img class="featured-image" 
+                             src="${this.featuredImages[prevIndex].url}" 
+                             alt="${this.featuredImages[prevIndex].alt}"
+                             data-image-index="${prevIndex}"
+                             loading="lazy">
+                    </div>
+                    <div class="featured-image-container featured-image-main">
+                        <img class="featured-image" 
+                             src="${image.url}" 
+                             alt="${image.alt}"
+                             data-image-index="${index}"
+                             loading="lazy">
+                    </div>
+                    <div class="featured-image-container featured-image-side">
+                        <img class="featured-image" 
+                             src="${this.featuredImages[nextIndex].url}" 
+                             alt="${this.featuredImages[nextIndex].alt}"
+                             data-image-index="${nextIndex}"
+                             loading="lazy">
+                    </div>
+                `;
+            }
+            
+            track.appendChild(item);
+        });
+    }
+    
+    createIndicators() {
+        const indicatorsContainer = document.getElementById('featured-indicators');
+        if (!indicatorsContainer) return;
+        
+        indicatorsContainer.innerHTML = '';
+        
+        this.featuredImages.forEach((_, index) => {
+            const indicator = document.createElement('button');
+            indicator.className = `featured-indicator ${index === 0 ? 'active' : ''}`;
+            indicator.setAttribute('data-index', index);
+            indicator.setAttribute('role', 'tab');
+            indicator.setAttribute('aria-selected', index === 0 ? 'true' : 'false');
+            indicator.setAttribute('aria-label', `Go to slide ${index + 1}`);
+            
+            indicator.addEventListener('click', () => {
+                this.goToSlide(index);
+            });
+            
+            indicatorsContainer.appendChild(indicator);
+        });
+    }
+    
+    bindEvents() {
+        const carousel = document.querySelector('.featured-carousel');
+        const prevBtn = document.querySelector('.featured-nav-prev');
+        const nextBtn = document.querySelector('.featured-nav-next');
+        
+        if (!carousel) return;
+        
+        // Navigation buttons
+        if (prevBtn) {
+            prevBtn.addEventListener('click', () => this.prevSlide());
+        }
+        if (nextBtn) {
+            nextBtn.addEventListener('click', () => this.nextSlide());
+        }
+        
+        // Pause on hover
+        carousel.addEventListener('mouseenter', () => this.pauseAutoScroll());
+        carousel.addEventListener('mouseleave', () => this.resumeAutoScroll());
+        
+        // Touch/swipe support for mobile
+        carousel.addEventListener('touchstart', (e) => this.handleTouchStart(e), { passive: true });
+        carousel.addEventListener('touchend', (e) => this.handleTouchEnd(e), { passive: true });
+        
+        // Click to open lightbox
+        carousel.addEventListener('click', (e) => {
+            const imageElement = e.target.closest('img');
+            if (imageElement) {
+                const imageIndex = parseInt(imageElement.getAttribute('data-image-index'));
+                this.openLightbox(imageIndex);
+            }
+        });
+        
+        // Window resize handler
+        window.addEventListener('resize', () => {
+            clearTimeout(this.resizeTimeout);
+            this.resizeTimeout = setTimeout(() => {
+                this.createCarouselItems();
+                this.updateCarousel();
+            }, 100);
+        });
+    }
+    
+    setupKeyboardNavigation() {
+        const carousel = document.querySelector('.featured-carousel');
+        if (!carousel) return;
+        
+        carousel.setAttribute('tabindex', '0');
+        carousel.addEventListener('keydown', (e) => {
+            switch (e.key) {
+                case 'ArrowLeft':
+                    e.preventDefault();
+                    this.prevSlide();
+                    break;
+                case 'ArrowRight':
+                    e.preventDefault();
+                    this.nextSlide();
+                    break;
+                case ' ':
+                case 'Enter':
+                    e.preventDefault();
+                    this.toggleAutoScroll();
+                    break;
+                case 'Home':
+                    e.preventDefault();
+                    this.goToSlide(0);
+                    break;
+                case 'End':
+                    e.preventDefault();
+                    this.goToSlide(this.featuredImages.length - 1);
+                    break;
+            }
+        });
+    }
+    
+    setupAriaLabels() {
+        const carousel = document.querySelector('.featured-carousel');
+        if (carousel) {
+            carousel.setAttribute('aria-live', 'polite');
+            carousel.setAttribute('aria-label', `Featured image carousel with ${this.featuredImages.length} images`);
+        }
+    }
+    
+    handleTouchStart(e) {
+        this.touchStartX = e.changedTouches[0].screenX;
+        this.pauseAutoScroll();
+    }
+    
+    handleTouchEnd(e) {
+        this.touchEndX = e.changedTouches[0].screenX;
+        this.handleSwipe();
+        this.resumeAutoScroll();
+    }
+    
+    handleSwipe() {
+        const swipeThreshold = 50;
+        const diff = this.touchStartX - this.touchEndX;
+        
+        if (Math.abs(diff) > swipeThreshold) {
+            if (diff > 0) {
+                this.nextSlide();
+            } else {
+                this.prevSlide();
+            }
+        }
+    }
+    
+    prevSlide() {
+        this.currentIndex = (this.currentIndex - 1 + this.featuredImages.length) % this.featuredImages.length;
+        this.updateCarousel();
+        this.resetAutoScroll();
+    }
+    
+    nextSlide() {
+        this.currentIndex = (this.currentIndex + 1) % this.featuredImages.length;
+        this.updateCarousel();
+        this.resetAutoScroll();
+    }
+    
+    goToSlide(index) {
+        this.currentIndex = index;
+        this.updateCarousel();
+        this.resetAutoScroll();
+    }
+    
+    updateCarousel() {
+        const items = document.querySelectorAll('.featured-item');
+        const indicators = document.querySelectorAll('.featured-indicator');
+        
+        // Simple, clean transition without conflicting styles
+        items.forEach((item, index) => {
+            if (index === this.currentIndex) {
+                item.classList.add('active');
+                item.classList.remove('fade-out', 'fade-in');
+            } else {
+                item.classList.remove('active', 'fade-in');
+                item.classList.add('fade-out');
+                
+                // Clean up after transition
+                setTimeout(() => {
+                    if (!item.classList.contains('active')) {
+                        item.classList.remove('fade-out');
+                    }
+                }, 1000);
+            }
+        });
+        
+        // Update indicators
+        indicators.forEach((indicator, index) => {
+            const isActive = index === this.currentIndex;
+            indicator.classList.toggle('active', isActive);
+            indicator.setAttribute('aria-selected', isActive ? 'true' : 'false');
+        });
+        
+        // Update ARIA live region
+        const carousel = document.querySelector('.featured-carousel');
+        if (carousel) {
+            const currentImage = this.featuredImages[this.currentIndex];
+            carousel.setAttribute('aria-label', `Slide ${this.currentIndex + 1} of ${this.featuredImages.length}: ${currentImage.alt}`);
+        }
+    }
+    
+    // Remove the complex performCrossFadeTransition function
+    
+    startAutoScroll() {
+        if (!this.isPlaying) return;
+        
+        this.autoScrollInterval = setInterval(() => {
+            if (!this.isPaused) {
+                this.nextSlide();
+            }
+        }, this.autoScrollDelay);
+    }
+    
+    pauseAutoScroll() {
+        this.isPaused = true;
+        const carousel = document.querySelector('.featured-carousel');
+        if (carousel) {
+            carousel.classList.add('paused');
+        }
+    }
+    
+    resumeAutoScroll() {
+        this.isPaused = false;
+        const carousel = document.querySelector('.featured-carousel');
+        if (carousel) {
+            carousel.classList.remove('paused');
+        }
+    }
+    
+    resetAutoScroll() {
+        this.stopAutoScroll();
+        setTimeout(() => {
+            this.startAutoScroll();
+        }, 100);
+    }
+    
+    stopAutoScroll() {
+        if (this.autoScrollInterval) {
+            clearInterval(this.autoScrollInterval);
+            this.autoScrollInterval = null;
+        }
+    }
+    
+    toggleAutoScroll() {
+        this.isPlaying = !this.isPlaying;
+        if (this.isPlaying) {
+            this.startAutoScroll();
+        } else {
+            this.stopAutoScroll();
+        }
+    }
+    
+    preloadImages() {
+        // Preload next few images for smooth transitions
+        const preloadCount = Math.min(3, this.featuredImages.length);
+        for (let i = 1; i <= preloadCount; i++) {
+            const index = (this.currentIndex + i) % this.featuredImages.length;
+            const img = new Image();
+            img.src = this.featuredImages[index].url;
+        }
+    }
+    
+    openLightbox(imageIndex) {
+        // Create a separate lightbox experience for featured images
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxCaption = document.getElementById('lightbox-caption');
+        
+        if (!lightbox || !lightboxImg || !lightboxCaption) return;
+        
+        const image = this.featuredImages[imageIndex];
+        
+        // Set lightbox content
+        lightboxImg.src = image.url;
+        lightboxCaption.textContent = image.alt;
+        
+        // Store reference to featured carousel for navigation
+        lightbox.setAttribute('data-source', 'featured-carousel');
+        lightbox.setAttribute('data-featured-index', imageIndex);
+        
+        // Show lightbox
+        lightbox.classList.add('active');
+        document.body.classList.add('lightbox-open');
+        
+        // Pause carousel while lightbox is open
+        this.pauseAutoScroll();
+        
+        // Override lightbox navigation for featured images only
+        this.setupFeaturedLightboxNavigation(lightbox, imageIndex);
+        
+        // Resume when lightbox closes
+        const closeHandler = () => {
+            if (!lightbox.classList.contains('active')) {
+                this.resumeAutoScroll();
+                this.cleanupFeaturedLightboxNavigation(lightbox);
+                lightbox.removeEventListener('transitionend', closeHandler);
+                lightbox.removeAttribute('data-source');
+                lightbox.removeAttribute('data-featured-index');
+            }
+        };
+        lightbox.addEventListener('transitionend', closeHandler);
+    }
+    
+    setupFeaturedLightboxNavigation(lightbox, startIndex) {
+        this.currentFeaturedIndex = startIndex;
+        
+        // Get navigation elements
+        const prevBtn = lightbox.querySelector('.lightbox-prev');
+        const nextBtn = lightbox.querySelector('.lightbox-next');
+        
+        if (prevBtn && nextBtn) {
+            // Clone buttons to remove all existing event listeners
+            const newPrevBtn = prevBtn.cloneNode(true);
+            const newNextBtn = nextBtn.cloneNode(true);
+            
+            // Replace old buttons with new ones
+            prevBtn.parentNode.replaceChild(newPrevBtn, prevBtn);
+            nextBtn.parentNode.replaceChild(newNextBtn, nextBtn);
+            
+            // Add our featured navigation listeners
+            this.featuredPrevHandler = (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                this.currentFeaturedIndex = (this.currentFeaturedIndex - 1 + this.featuredImages.length) % this.featuredImages.length;
+                this.updateFeaturedLightbox(this.currentFeaturedIndex);
+            };
+            
+            this.featuredNextHandler = (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                this.currentFeaturedIndex = (this.currentFeaturedIndex + 1) % this.featuredImages.length;
+                this.updateFeaturedLightbox(this.currentFeaturedIndex);
+            };
+            
+            newPrevBtn.addEventListener('click', this.featuredPrevHandler);
+            newNextBtn.addEventListener('click', this.featuredNextHandler);
+            
+            // Store references for cleanup
+            this.featuredPrevElement = newPrevBtn;
+            this.featuredNextElement = newNextBtn;
+        }
+        
+        // Override keyboard navigation
+        this.featuredKeyHandler = (e) => {
+            if (!lightbox.classList.contains('active') || lightbox.getAttribute('data-source') !== 'featured-carousel') return;
+            
+            if (e.key === 'Escape') {
+                this.closeLightbox();
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                this.currentFeaturedIndex = (this.currentFeaturedIndex - 1 + this.featuredImages.length) % this.featuredImages.length;
+                this.updateFeaturedLightbox(this.currentFeaturedIndex);
+            } else if (e.key === 'ArrowRight') {
+                e.preventDefault();
+                this.currentFeaturedIndex = (this.currentFeaturedIndex + 1) % this.featuredImages.length;
+                this.updateFeaturedLightbox(this.currentFeaturedIndex);
+            }
+        };
+        
+        // Remove existing keyboard listeners and add ours
+        document.removeEventListener('keydown', this.originalKeyHandler);
+        document.addEventListener('keydown', this.featuredKeyHandler);
+    }
+    
+    updateFeaturedLightbox(index) {
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxCaption = document.getElementById('lightbox-caption');
+        const lightbox = document.getElementById('lightbox');
+        
+        if (lightboxImg && lightboxCaption) {
+            const image = this.featuredImages[index];
+            
+            // Smooth image transition
+            lightboxImg.style.opacity = '0.5';
+            
+            setTimeout(() => {
+                lightboxImg.src = image.url;
+                lightboxCaption.textContent = image.alt;
+                lightbox.setAttribute('data-featured-index', index);
+                lightboxImg.style.opacity = '1';
+            }, 150);
+        }
+    }
+    
+    cleanupFeaturedLightboxNavigation(lightbox) {
+        // Get current navigation elements
+        const currentPrevBtn = lightbox.querySelector('.lightbox-prev');
+        const currentNextBtn = lightbox.querySelector('.lightbox-next');
+        
+        if (currentPrevBtn && currentNextBtn && this.featuredPrevElement && this.featuredNextElement) {
+            // Clone again to remove our listeners
+            const cleanPrevBtn = currentPrevBtn.cloneNode(true);
+            const cleanNextBtn = currentNextBtn.cloneNode(true);
+            
+            // Replace with clean buttons
+            currentPrevBtn.parentNode.replaceChild(cleanPrevBtn, currentPrevBtn);
+            currentNextBtn.parentNode.replaceChild(cleanNextBtn, currentNextBtn);
+            
+            // Re-initialize the original portfolio lightbox navigation
+            this.reinitializePortfolioLightbox(cleanPrevBtn, cleanNextBtn);
+        }
+        
+        // Remove our keyboard handler
+        document.removeEventListener('keydown', this.featuredKeyHandler);
+        
+        // Clean up references
+        this.featuredPrevElement = null;
+        this.featuredNextElement = null;
+        this.currentFeaturedIndex = null;
+    }
+    
+    reinitializePortfolioLightbox(prevBtn, nextBtn) {
+        // Re-add the original portfolio lightbox event listeners
+        // This reconnects to your existing portfolio lightbox system
+        if (window.lightboxPrev && window.lightboxNext) {
+            prevBtn.addEventListener('click', window.lightboxPrev);
+            nextBtn.addEventListener('click', window.lightboxNext);
+        } else {
+            // Fallback: try to find and call the original lightbox functions
+            const galleryItems = document.querySelectorAll('.gallery-item.show');
+            if (galleryItems.length > 0) {
+                prevBtn.addEventListener('click', () => {
+                    // Call original portfolio prev logic
+                    if (window.currentImageIndex > 0) {
+                        window.currentImageIndex--;
+                        window.updateLightboxImage();
+                    }
+                });
+                
+                nextBtn.addEventListener('click', () => {
+                    // Call original portfolio next logic
+                    if (window.currentImageIndex < galleryItems.length - 1) {
+                        window.currentImageIndex++;
+                        window.updateLightboxImage();
+                    }
+                });
+            }
+        }
+    }
+    
+    closeLightbox() {
+        const lightbox = document.getElementById('lightbox');
+        if (lightbox) {
+            lightbox.classList.remove('active');
+            document.body.classList.remove('lightbox-open');
+            this.resumeAutoScroll();
+        }
+    }
+    
+    destroy() {
+        this.stopAutoScroll();
+        window.removeEventListener('resize', this.handleResize);
+        
+        // Remove all event listeners
+        const carousel = document.querySelector('.featured-carousel');
+        if (carousel) {
+            carousel.replaceWith(carousel.cloneNode(true));
+        }
+    }
+}
+
+// Initialize Featured Carousel when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    // Make sure the featured section exists before initializing
+    if (document.getElementById('featured')) {
+        window.featuredCarousel = new FeaturedCarousel();
+    }
+});
+
+// Handle page visibility changes (pause when tab is not active)
+document.addEventListener('visibilitychange', () => {
+    if (window.featuredCarousel) {
+        if (document.hidden) {
+            window.featuredCarousel.pauseAutoScroll();
+        } else {
+            window.featuredCarousel.resumeAutoScroll();
+        }
+    }
+});

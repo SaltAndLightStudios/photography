@@ -47,6 +47,7 @@
                 <!-- Navigation Links -->
                 <nav class="flex flex-col md:items-start items-center space-y-6 mb-8">
                     <a href="#home" class="nav-link active text-lg font-light tracking-wide">Home</a>
+                    <a href="#featured" class="nav-link text-lg font-light tracking-wide">Featured</a>
                     <a href="#portfolio" class="nav-link text-lg font-light tracking-wide">Portfolio</a>
                     <a href="#about" class="nav-link text-lg font-light tracking-wide">About</a>
                     <a href="#blog" class="nav-link text-lg font-light tracking-wide">Blog</a>
@@ -94,6 +95,47 @@
                     <!--<a href="#portfolio"
                         class="mt-12 px-8 py-3 bg-white text-stone-900 hover:bg-stone-200 transition-colors rounded-sm">View
                         Portfolio</a>-->
+                </div>
+            </section>
+
+            <!-- Featured Section - Add this BEFORE the Portfolio Section -->
+            <section id="featured" class="py-20 px-6 md:px-12 bg-gradient-to-b from-stone-50 to-white">
+                <div class="max-w-7xl mx-auto">
+                    <h2 class="text-3xl md:text-4xl font-semibold mb-2">Recent & Favorites</h2>
+                    <p class="text-stone-600 mb-12">Recent captures and personal favorites</p>
+
+                    <!-- Featured Carousel Container -->
+                    <div class="featured-carousel-container relative">
+                        <!-- Main Carousel -->
+                        <div class="featured-carousel relative overflow-hidden" role="region"
+                            aria-label="Featured photography carousel">
+                            <div class="featured-carousel-track" id="featured-track">
+                                <!-- Featured items will be dynamically populated -->
+                            </div>
+
+                            <!-- Navigation Arrows -->
+                            <button class="featured-nav featured-nav-prev" aria-label="Previous featured image"
+                                tabindex="0">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M15 19l-7-7 7-7" />
+                                </svg>
+                            </button>
+                            <button class="featured-nav featured-nav-next" aria-label="Next featured image"
+                                tabindex="0">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 5l7 7-7 7" />
+                                </svg>
+                            </button>
+                        </div>
+
+                        <!-- Progress Indicators -->
+                        <div class="featured-indicators mt-6" id="featured-indicators" role="tablist"
+                            aria-label="Featured image indicators">
+                            <!-- Dots will be dynamically populated -->
+                        </div>
+                    </div>
                 </div>
             </section>
 
