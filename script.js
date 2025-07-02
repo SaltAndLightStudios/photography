@@ -628,10 +628,10 @@ class FeaturedCarousel {
         // Featured images data (you can replace these URLs with your chosen images)
         this.featuredImages = [
             {
-                url: 'https://res.cloudinary.com/dsnvuavbj/image/upload/q_auto,f_auto,w_800/v1750348343/old_lighthouse2_tajsfg.jpg',
-                alt: 'Little Light House',
-                category: 'gulf-coast',
-                subcategory: 'lighthouses'
+                url: 'https://res.cloudinary.com/dsnvuavbj/image/upload/q_auto,f_auto,w_800/romania_church_ofw91i.jpg',
+                alt: 'The Way',
+                category: 'travel',
+                subcategory: 'romania'
             },
             {
                 url: 'https://res.cloudinary.com/dsnvuavbj/image/upload/q_auto,f_auto,w_800/bigben_framed_London_riaqjj.jpg',
